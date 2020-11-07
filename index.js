@@ -19,7 +19,9 @@ app.use(express.static(__dirname + '/public'))
 const port = process.env.PORT || 3000
 
 app.get('/', (req, res) => res.render('home'))
-
+app.get('/', (req, res) => res.render('falsifer'))
+app.get('/', (req, res) => res.render('comparier'))
+app.get('/', (req, res) => res.render('about'))
 
 
 // custom 404 page
