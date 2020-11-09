@@ -3661,7 +3661,7 @@ input[type=button].btn-block {
   margin-bottom: 0;
 }
 
-.custom-file-input {
+.custom-file-input.rounded-pill {
   position: relative;
   z-index: 2;
   width: 100%;
@@ -3683,7 +3683,7 @@ input[type=button].btn-block {
   content: attr(data-browse);
 }
 
-.custom-file-label {
+.custom-file-label.rounded-pill {
   position: absolute;
   top: 0;
   right: 0;
@@ -3696,23 +3696,23 @@ input[type=button].btn-block {
   color: #495057;
   background-color: #fff;
   border: 0.125rem solid #ced4da;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
 }
-.custom-file-label::after {
+.custom-file-label.rounded-pill::after {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   z-index: 3;
   display: block;
-  height: calc(1.5em + 0.75rem);
+  height: calc(1.5rem + 0.75rem);
   padding: 0.375rem 0.75rem;
   line-height: 1.5;
   color: #495057;
   content: "Browse";
   background-color: #e9ecef;
   border-left: inherit;
-  border-radius: 0 0.5rem 0.5rem 0;
+  border-radius: 0 50rem 50rem 0;
 }
 
 .custom-range {
@@ -3972,7 +3972,7 @@ input[type=button].btn-block {
   padding-top: 0.3125rem;
   padding-bottom: 0.3125rem;
   margin-right: 1rem;
-  font-size: 1.25rem;
+  height: 4rem;
   line-height: inherit;
   white-space: nowrap;
 }
@@ -6073,7 +6073,7 @@ a.close.disabled {
 }
 
 .bg-primary {
-  background-color: #1abc9c !important;
+  background-color: #a7e0ff !important;
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
