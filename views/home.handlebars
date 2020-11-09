@@ -17,8 +17,11 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top">ALBERT TRACKER</a>
-                <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                {{!-- <a class="navbar-brand js-scroll-trigger" href="#page-top">ALBERT TRACKER</a> --}}
+                <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                    <img class="masthead-avatar mb-5" src="/img/logo.png" alt="" height="50" />
+                </a>
+                <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-black rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
                 </button>
@@ -33,19 +36,27 @@
         </nav>
         <!-- Masthead-->
         <header class="masthead bg-primary text-white text-center">
+            <div class="container">
+                <div class="row mb-5 text-left text-white">
+                    <div class="col-lg-6 mx-auto">                                                               
+                        <input id="customFile" type="file" class="custom-file-input rounded-pill">
+                        <label for="customFile" class="custom-file-label rounded-pill">Choose file</label>   
+                    </div>                                                             
+                </div>      
+            </div>
             <div class="container d-flex align-items-center flex-column">
                 <!-- Masthead Avatar Image-->
-                <img class="masthead-avatar mb-5" src="/img/logo.png" alt="" />
+                {{!-- <img class="masthead-avatar mb-5" src="/img/logo.png" alt="" /> --}}
                 <!-- Masthead Heading -->
-                <h1 class="masthead-heading text-uppercase mb-0">ALBERT TRACKER</h1> 
+                {{!-- <h1 class="masthead-heading text-uppercase mb-0">ALBERT TRACKER</h1>  --}}
                 <!-- Icon Divider-->
-                <div class="divider-custom divider-light">
+                {{!-- <div class="divider-custom divider-light">
                     <div class="divider-custom-line"></div>
                     <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                     <div class="divider-custom-line"></div>
-                </div>
+                </div> --}}
                 <!-- Masthead Subheading-->
-                <p class="masthead-subheading font-weight-light mb-0">COMMING SOON</p>
+                {{!-- <p class="masthead-subheading font-weight-light mb-0">COMMING SOON</p> --}}
             </div>
         </header>
         <!-- About Section-->
@@ -113,3 +124,4 @@
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
     </body>
+</html>
