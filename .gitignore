@@ -120,3 +120,4 @@ dist
 *.pyc
 .DS_Store
 >>>>>>> 6b10bff988fcd256787d6a9c0ee9e7f3a582118e
+public/python/.DS_Store
