@@ -44,10 +44,13 @@
             <div class="container">
                 <div class="row mb-5 text-left text-white">
                     <div class="col-lg-6 mx-auto">                                                               
-                        <input id="customFile" type="file" class="custom-file-input rounded-pill">
-                        <label for="customFile" class="custom-file-label rounded-pill">
-                            Choose file
-                        </label>   
+                        <div class="input-group">
+                            <div class="custom-file">    
+                                <input type="file" class="custom-file-input rounded-pill" id="fileInput"
+                                aria-describedby="fileInput">
+                                <label class="custom-file-label rounded-pill" for="fileInput">Choose file</label>   
+                            </div>  
+                        </div>
                     </div>                                                             
                 </div>      
             </div>
