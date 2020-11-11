@@ -9,11 +9,8 @@
 # Import Declarations.
 import argparse     # Python Standard Library - Parser for command-line options, arguments
 import os           # Standard Library OS functions
-import logging      # Standard Library Logging functions
 import sys
 import Levenshtein  # Update 1.1: Added suppost for editDistance argument.
-
-log = logging.getLogger('main._psearch')
 
 # Constants
 MIN_WORD = 5            # Minimum word size in bytes
@@ -109,15 +106,9 @@ def SearchWords():
         for line in fileWords:
             searchWords.add(line.strip())
     except IOError:
-        log.error('Keyword File Failure: ' + gl_args.keyWords)
         sys.exit()
     finally:
         fileWords.close()
-
-    # Create Log Entry Words to Search For
-    log.info('Search Words')
-    log.info('Input File: ' + gl_args.keyWords)
-    log.info(searchWords)
 
     # Attempt to open and read the target file
     # and directly load into a bytearray
@@ -125,16 +116,12 @@ def SearchWords():
         targetFile = open(gl_args.srchTarget, 'rb')
         baTarget = bytearray(targetFile.read())
     except IOError:
-        log.error('Target File Failure: ' + gl_args.srchTarget)
         sys.exit()
     finally:
         targetFile.close()
 
     sizeOfTarget = len(baTarget)
 
-    # Post to log
-    log.info('Target of Search: ' + gl_args.srchTarget)
-    log.info('File Size: ' + str(sizeOfTarget))
     baTargetCopy = baTarget
     wordCheck = class_Matrix()
 
@@ -273,7 +260,6 @@ class class_Matrix:
                 value = line.strip()
                 self.weightedMatrix.add(int(value,16))
         except:
-            log.error('Matrix File Error:' + gl_args.theMatrix)
             sys.exit()
         finally:
             fileTheMatrix.close()

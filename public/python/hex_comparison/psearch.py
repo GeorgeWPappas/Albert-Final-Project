@@ -20,7 +20,6 @@
 # 4 to 12 alpha characters
 
 # Import Declarations.
-import logging  # Python Standard Library Logger
 import time     # Python Standard Library time functions
 import _psearch # _psearch Support Function Module
 
@@ -28,15 +27,8 @@ import _psearch # _psearch Support Function Module
 if __name__ == '__main__':
     PSEARCH_VERSION = '1.1'
     
-    # Turn on Logging
-    logging.basicConfig(filename = 'pSearchLog.log', level = logging.DEBUG, format = '%(asctime)s %(message)s')
-
     # Process the Command Line Arguments
     _psearch.ParseCommandLine()
-
-    log = logging.getLogger('main._psearch')
-    log.info('')
-    log.info("p-search started")
 
     # Record the Starting Time
     startTime = time.time()
@@ -47,8 +39,3 @@ if __name__ == '__main__':
     # Record the Ending Time
     endTime = time.time()
     duration = endTime - startTime
-
-    logging.info('Elapsed Time: ' + str(duration) + ' seconds')
-    logging.info('')
-    logging.info('Program Terminated Normally')
-    logging.info('')
