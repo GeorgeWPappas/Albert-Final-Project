@@ -1,7 +1,7 @@
 const express = require('express')
 const expressHandlebars = require('express-handlebars')
-
 const app = express()
+const port = process.env.PORT || 3000
 
 var favicon = require('serve-favicon');
 app.use(favicon(__dirname + '/public/img/favicon.ico'));
@@ -14,15 +14,10 @@ app.set('view engine', 'handlebars')
 
 app.use(express.static(__dirname + '/public'))
 
-
-
-const port = process.env.PORT || 3000
-
 app.get('/', (req, res) => res.render('home'))
-app.get('/', (req, res) => res.render('falsifer'))
-app.get('/', (req, res) => res.render('comparier'))
-app.get('/', (req, res) => res.render('about'))
-
+app.get('/falsifer', (req, res) => res.render('falsifer'))
+app.get('/comparier', (req, res) => res.render('comparier'))
+app.get('/about', (req, res) => res.render('about'))
 
 // custom 404 page
 app.use((req, res) => {
