@@ -10,6 +10,8 @@
 
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCclbmi0iqWLoaKzsDwh9F7Bg3SRaW0IYA&callback=initMap&libraries=&v=weekly" defer></script>
 
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
         <style type="text/css">
         /* Always set the map height explicitly to define the size of the div
         * element that contains the map. */
@@ -38,6 +40,32 @@
         }
         </script>
         
+        <script>
+            $(function() {
+                // We can attach the `fileselect` event to all file inputs on the page
+                $(document).on('change', ':file', function() {
+                    var input = $(this),
+                        numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                    input.trigger('fileselect', [numFiles, label]);
+                });
+
+                // We can watch for our custom `fileselect` event like this
+                $(document).ready( function() {
+                    $(':file').on('fileselect', function(event, numFiles, label) {
+
+                        var input = $(this).parents('.input-group').find(':text'),
+                            log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+                        if( input.length ) {
+                            input.val(log);
+                        } else {
+                            if( log ) alert(log);
+                        }
+                    });
+                });
+            });
+        </script>
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
         
@@ -46,7 +74,7 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="/css/styles.css" rel="stylesheet" />
+        <link href="/css/styles.css" rel="stylesheet"/>
     </head>
 
     <body id="page-top">
@@ -74,18 +102,51 @@
         <header class="masthead bg-primary text-white text-center">
             <!-- Choose file explorer bar -->
             <div class="container">
+                <div class="col-lg-8 col-sm-10 col-12 mx-auto bg-gray rounded ">
+                    <div class="input-group">
+                        <label class="input-group-btn">
+                            <span class="btn bg-secondary text-primary">
+                                Browse&hellip; <input type="file" style="display: none;" accept="image/png, image/jpeg">
+                            </span>
+                        </label>
+                        <input type="text" class="form-control" readonly>
+                        <label class="input-group-btn">
+                            <span class="btn bg-secondary text-primary">
+                                Submit <input type="submit" style="display: none;">
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            {{!-- <div class="container">
+                <div class="row mb-5 text-left text-white">
+                    <div class="col-lg-6 mx-auto">                                                               
+                        <div class="input-group">
+                            <div class="custom-file">  
+                                <input type="file" class="custom-file-label rounded-pill" id="fileInput" accept="image/png, image/jpeg">
+                                <label  for="fileInput">Choose file</label>   
+                            </div> 
+                        </div>
+                    </div>                                                             
+                </div> 
+            </div> --}}
+
+            {{!-- <div class="container">
                 <div class="row mb-5 text-left text-white">
                     <div class="col-lg-6 mx-auto">                                                               
                         <div class="input-group">
                             <div class="custom-file">    
-                                <input type="file" class="custom-file-input rounded-pill" id="fileInput"
-                                aria-describedby="fileInput">
+                                <input type="file" class="custom-file-input rounded-pill" id="fileInput" aria-describedby="fileInput">
                                 <label class="custom-file-label rounded-pill" for="fileInput">Choose file</label>   
                             </div>  
                         </div>
                     </div>                                                             
                 </div>      
-            </div>
+            </div> --}}
+            
+            {{!-- <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg"> --}}
+
 
             {{!-- FORMATTED COL.
             <div class="container-fluid text-center ">    
@@ -117,18 +178,20 @@
                     </div>
                 </div>
             </div> --}}
+
+            {{!-- GREEN COL.
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3 bg-success">.col-3</div>
+                    <div class="col-lg-6" style="height: 50rem; width: auto";>
+                        <div id="map"></div>
+                    </div>
+                    <div class="col-lg-3 bg-success">.col-3</div>
+                </div>
+            </div> --}}
         </header> 
 
-        {{!-- GREEN COL.
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-3 bg-success">.col-3</div>
-                <div class="col-lg-6" style="height: 50rem; width: auto";>
-                    <div id="map"></div>
-                </div>
-                <div class="col-lg-3 bg-success">.col-3</div>
-            </div>
-        </div> --}}
+
 
         <div id="map"></div>
 
