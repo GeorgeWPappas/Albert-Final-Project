@@ -10145,6 +10145,7 @@ h3 {
   }
 }
 .portfolio .portfolio-item {
+  padding-top: calc(6rem + 104px);
   cursor: pointer;
   position: relative;
   display: block;
@@ -10173,6 +10174,7 @@ h3 {
 }
 @media (min-width: 992px) {
   .portfolio-modal .portfolio-modal-title {
+    padding-top: calc(6rem + 104px);
     font-size: 3rem;
     line-height: 2.5rem;
   }
