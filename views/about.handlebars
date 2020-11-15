@@ -1,4 +1,5 @@
 {{!-- about.handlebars --}}
+
 <html lang="en">
     <head>
         <meta charset="utf-8" />
@@ -39,29 +40,80 @@
             </div>
         </nav>
 
-        <section class="masthead bg-primary text-white text-center">
+   
+        <!-- About  Section-->
+        <section class="masthead bg-primary text-center">
             <div class="container">
-                <div class="row mb-5 text-left text-dark">  
-                    <div class="row-lg-4 ml-auto">
-                        <h2 class="page-section-heading text-uppercase text-black text-center">About Albert</h2><br>
-                        <p class="lead">Albert Tracker is a web application that utilizes Node.js and Bootstrap. It was created as the final project for a class at Lewis University. The members of the group include Alec, George, Lou and Marjie.</p></div>
-                        <br><br><br><br>
-                    <div class="row-lg-4 mr-auto">
-                        <h2 class="page-section-heading text-uppercase text-black text-center">About The Team</h2><br>
-                        <h4 class="text-uppercase text-black">Alec</h4><p class="lead">Albert allows you to upload an image of your choosing to find the exact latitude and longitude of the location the photo was taken. This will only provide infromation on images that were taken with a GPS Camera or a Smart Phone.</p>
-                        <br><br>
-                        <h4 class="text-uppercase text-black">George</h4><p class="lead">Albert allows you to upload an image of your choosing to find the exact latitude and longitude of the location the photo was taken. This will only provide infromation on images that were taken with a GPS Camera or a Smart Phone.</p>
-                        <br><br>
-                        <h4 class="text-uppercase text-black">Lou</h4><p class="lead">Albert allows you to upload an image of your choosing to find the exact latitude and longitude of the location the photo was taken. This will only provide infromation on images that were taken with a GPS Camera or a Smart Phone.</p>
-                        <br><br>
-                        <h4 class="text-uppercase text-black">Marjie</h4><p class="lead">Albert allows you to upload an image of your choosing to find the exact latitude and longitude of the location the photo was taken. This will only provide infromation on images that were taken with a GPS Camera or a Smart Phone.</p>
-                        <br><br><br><br><br><br><br><br><br>
-                    </div>                                                    
-                </div>      
+                <!-- About Albert Heading-->
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-10 mb-5">
+                        <h1 class="page-section-heading text-center text-uppercase text-secondary mb-0">About Albert</h2>
+                        <p><p class="lead">Albert Tracker is a web application that utilizes Node.js and Bootstrap. 
+                            It was created as the final project for a class at Lewis University. The members of the
+                            group include Alec, George, Lou and Marjie.</p>
+                    </div>
+                </div>
+
+                {{!-- MAYBE CHANGE BACKGROUND COLOR AND HYPERLINK COLORS --}}
+                <!-- About Team Heading-->
+                <h1 class="page-section-heading text-center text-uppercase text-secondary mb-0">About Team Albert</h2>
+                <br>
+                <!-- About Grid Items-->
+                <div class="row justify-content-center">
+                    <!-- Lou -->
+                    <div class="col-md-6 col-lg-6 mb-5">
+                        <div class="portfolio-item mx-auto">
+                            <img class="rounded-circle z-depth-2 " alt="lou_picture" src="/img/Lou.jpg"  height="200" width="200">
+                            <h3 class="text-uppercase text-black">Lou</h4>
+                            <p class="lead">Lou is a senior at Lewis University. He is currently pursuing a Bachelors in Science. Lou 
+                                has a major in Computer Science and a minor in business. He is planning on graduating in May of 2021. 
+                            </p> 
+                            <p>Learn more about Lou's progess in Software Engineering <a href="https://loupetrongelli-node.azurewebsites.net/">here</a>.</p>
+                            <p>Learn more about Lou's programming projects <a href="https://github.com/lpetrongellijr">here</a>.</p>
+                        </div>
+                    </div>
+                
+                    <!-- George -->
+                    <div class="col-md-6 col-lg-6 mb-5">
+                        <div class="portfolio-item mx-auto">
+                            <img class="rounded-circle z-depth-2 " alt="george_picture" src="/img/George.jpg"  height="200" width="200">
+                            <h3 class="text-uppercase text-black">George</h4>
+                            <p class="lead">Info about George...
+                            </p> 
+                            <p>Learn more about George's progess in Software Engineering <a href="url">here</a>.</p>
+                            <p>Learn more about George's programming projects <a href="https://github.com/GeorgeWPappas">here</a>.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <!-- Alec -->
+                    <div class="col-md-6 col-lg-6 mb-5">
+                        <div class="portfolio-item mx-auto">
+                            <img class="rounded-circle z-depth-2 " alt="alec_picture" src="/img/Alec.jpg" height="200" width="200">
+                            <h3 class="text-uppercase text-black">Alec</h4>
+                            <p class="lead">Info about Alec...
+                            </p> 
+                            <p>Learn more about Alec's progess in Software Engineering <a href="url">here</a>.</p>
+                            <p>Learn more about Alec's programming projects <a href="https://github.com/aschopler">here</a>.</p>
+                        </div>
+                    </div>
+                    <!-- Marjie -->
+                    <div class="col-md-6 col-lg-6 mb-5 ">
+                        <div class="portfolio-item mx-auto">
+                            <img class="rounded-circle z-depth-2 " alt="marjie_picture" src="/img/Marjie.jpg" height="200" width="200">
+                            <h3 class="text-uppercase text-black">Marjie</h4>
+                            <p class="lead">Info about Marjie...
+                            </p> 
+                            <p>Learn more about Marjie's progess in Software Engineering <a href="url">here</a>.</p>
+                            <p>Learn more about Marjie's programming projects <a href="https://github.com/marjiesilva">here</a>.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+            
+            <br><br><br>
+            <p class="lead"><i>About Page Last Updated: November 15, 2020</i></p>
         </section>
-
-
 
         <!-- Footer-->
         <footer class="footer text-center">
