@@ -16,17 +16,9 @@
         /* Always set the map height explicitly to define the size of the div
         * element that contains the map. */
         #map {
-            height: 100%;
+            height: 90%;
+            border-radius: 0.5rem !important;
         }
-
-        /* Optional: Makes the sample page fill the window. */
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
         </style>
 
         <script>
@@ -84,7 +76,7 @@
                 <a class="navbar-brand js-scroll-trigger" href="/">
                     <img class="masthead-avatar mb-5" src="/img/logo.png" alt="" height="50"/>
                 </a>
-                <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-black rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-menu text-black rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
                 </button>
@@ -102,7 +94,7 @@
         <header class="masthead bg-primary text-white text-center">
             <!-- Choose file explorer bar -->
             <div class="container">
-                <div class="col-lg-8 col-sm-10 col-12 mx-auto bg-gray rounded ">
+                <div class="col-lg-8 col-sm-10 col-12 mx-auto"></div>
                     <div class="input-group">
                         <label class="input-group-btn">
                             <span class="btn bg-secondary text-primary">
@@ -118,6 +110,7 @@
                     </div>
                 </div>
             </div>
+        </header>
 
             {{!-- <div class="container">
                 <div class="row mb-5 text-left text-white">
@@ -178,11 +171,12 @@
                     </div>
                 </div>
             </div> --}}
-
-            {{!-- GREEN COL.
+            
+        <section class="bg-primary text-white text-center">
+            {{!-- GREEN COL. --}}
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-3 bg-success">
+                    <div class="col-lg-3 bg-primary">
                         <h3 style="page-section-heading text-center">information</h3>
                         <br>
                         <p class="text-uppercase text-black text-left">File Name: </p>
@@ -194,19 +188,21 @@
                         <p class="text-uppercase text-black text-left">Camera Make: </p>
                         <p class="text-uppercase text-black text-left">Model: </p>
                     </div>
-                    <div class="col-lg-6" style="height: 40rem; width: 40rem";>
+                    <div class="col-lg-9" style="height: 40rem; width: 40rem";>
                         <div id="map"></div>
+                        
                     </div>
-                    <div class="col-lg-3 bg-success">
+                    {{!-- Ad code
+                    <div class="col-lg-3 bg-primary">
                         <img class="" alt="" src="/img/lewis.gif" width="350rem" height="600rem" >
-                    </div>
+                    </div> --}}
                 </div>
-            </div> --}}
-        </header> 
+            </div>
+        </section>
 
 
 
-        <div id="map"></div>
+        {{!-- <div id="map"></div> --}}
 
         <!-- About Section-->
         <section class="page-section bg-white text-black mb-0" id="about">

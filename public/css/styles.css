@@ -6075,6 +6075,10 @@ a.close.disabled {
 }
 
 .bg-primary {
+  background-color: #4d6980 !important;
+}
+
+.bg-menu {
   background-color: #a7e0ff !important;
 }
 
