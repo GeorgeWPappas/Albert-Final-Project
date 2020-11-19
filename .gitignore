@@ -118,8 +118,8 @@ dist
 
 # Ignores python compiled bytecode
 *.pyc
-.DS_Store
 >>>>>>> 6b10bff988fcd256787d6a9c0ee9e7f3a582118e
+.DS_Store
 public/python/.DS_Store
 public/.DS_Store
 public/python/.DS_Store
