@@ -1,12 +1,63 @@
-{{!-- falsifer.handlebars --}}
 <html lang="en">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="Albert Tracker is able to falsify meta data tags within a given image." />
+        <meta name="description" content="Albert Tracker uses meta data to track the location of a photograph." />
         <meta name="author" content="" />
         <title>Albert Tracker</title>
 
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCclbmi0iqWLoaKzsDwh9F7Bg3SRaW0IYA&callback=initMap&libraries=&v=weekly" defer></script>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+        <style type="text/css">
+        /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+        #map {
+            height: 90%;
+            border-radius: 0.5rem !important;
+        }
+        </style>
+
+        <script>
+        let map;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: 41.605540, lng: -88.077220 },
+            zoom: 8,
+            });
+        }
+        </script>
+        
+        <script>
+            $(function() {
+                // We can attach the `fileselect` event to all file inputs on the page
+                $(document).on('change', ':file', function() {
+                    var input = $(this),
+                        numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                    input.trigger('fileselect', [numFiles, label]);
+                });
+
+                // We can watch for our custom `fileselect` event like this
+                $(document).ready( function() {
+                    $(':file').on('fileselect', function(event, numFiles, label) {
+
+                        var input = $(this).parents('.input-group').find(':text'),
+                            log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+                        if( input.length ) {
+                            input.val(log);
+                        } else {
+                            if( log ) alert(log);
+                        }
+                    });
+                });
+            });
+        </script>
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
         
@@ -15,9 +66,9 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="/css/styles.css" rel="stylesheet" />
+        <link href="/css/styles.css" rel="stylesheet"/>
     </head>
-    
+
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
@@ -25,7 +76,7 @@
                 <a class="navbar-brand js-scroll-trigger" href="/">
                     <img class="masthead-avatar mb-5" src="/img/logo.png" alt="" height="50"/>
                 </a>
-                <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-black rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-menu text-black rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
                 </button>
@@ -39,7 +90,141 @@
             </div>
         </nav>
 
+        <!-- Masthead-->
+        <header class="masthead bg-primary text-white text-center">
+            <!-- Choose file explorer bar -->
+            <div class="container">
+                <div class="col-lg-8 col-sm-10 col-12 mx-auto"></div>
+                    <div class="input-group">
+                        <label class="input-group-btn">
+                            <span class="btn bg-secondary text-primary">
+                                Browse&hellip; <input type="file" style="display: none;" accept="image/png, image/jpeg">
+                            </span>
+                        </label>
+                        <input type="text" class="form-control" readonly>
+                        <label class="input-group-btn">
+                            <span class="btn bg-secondary text-primary">
+                                Submit <input type="submit" style="display: none;">
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </header>
 
+            {{!-- <div class="container">
+                <div class="row mb-5 text-left text-white">
+                    <div class="col-lg-6 mx-auto">                                                               
+                        <div class="input-group">
+                            <div class="custom-file">  
+                                <input type="file" class="custom-file-label rounded-pill" id="fileInput" accept="image/png, image/jpeg">
+                                <label  for="fileInput">Choose file</label>   
+                            </div> 
+                        </div>
+                    </div>                                                             
+                </div> 
+            </div> --}}
+
+            {{!-- <div class="container">
+                <div class="row mb-5 text-left text-white">
+                    <div class="col-lg-6 mx-auto">                                                               
+                        <div class="input-group">
+                            <div class="custom-file">    
+                                <input type="file" class="custom-file-input rounded-pill" id="fileInput" aria-describedby="fileInput">
+                                <label class="custom-file-label rounded-pill" for="fileInput">Choose file</label>   
+                            </div>  
+                        </div>
+                    </div>                                                             
+                </div>      
+            </div> --}}
+            
+            {{!-- <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg"> --}}
+
+
+            {{!-- FORMATTED COL.
+            <div class="container-fluid text-center ">    
+                <div class="row content">
+                    <div class="col-sm-3">
+                        <h3 style="page-section-heading text-center">information</h3>
+                        <br>
+                        <p class="text-uppercase text-black">File Name: </p>
+                        <p class="text-uppercase text-black">Date: </p>
+                        <br>
+                        <p class="text-uppercase text-black">Longitude: </p>
+                        <p class="text-uppercase text-black">Latitude: </p>
+                        <br>
+                        <p class="text-uppercase text-black">Camera Make: </p>
+                        <p class="text-uppercase text-black">Model: </p>
+                    </div>
+                    
+                    <div class="col-sm-6 text-left"> 
+                        <div id="map"></div>
+                    </div>
+                    
+                    <div class="col-sm-2 sidenav">
+                        <div class="well">
+                            <p>ADS</p>
+                        </div>
+                        <div class="well">
+                            <p>ADS</p>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
+            
+        <section class="bg-primary text-center ">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3 col-md-12 col-sm-12 col-12 col-xl-3 bg-primary">
+                        <h3 class="text-white" style="page-section-heading text-center">falsified information</h3>
+                            <br>
+                            <p class="text-uppercase text-white text-left">File Name: </p>
+                            <p class="text-uppercase text-white text-left">Date: </p>
+                            <br>
+                            <p class="text-uppercase text-red text-left font-weight-bold">NEW Longitude: </p>
+                            <p class="text-uppercase text-white text-left">Longitude: </p>
+                            <br>
+                            <p class="text-uppercase text-red text-left font-weight-bold">NEW Latitude: </p>
+                            <p class="text-uppercase text-white text-left">Latitude: </p>
+                            <br>
+                            <p class="text-uppercase text-white text-left">Camera Make: </p>
+                            <p class="text-uppercase text-white text-left">Model: </p>
+
+                        <br>
+                    </div>
+                    <div class="col-lg-9 col-md-12 col-sm-12 col-12 col-xl-9" style="height: 40rem; width: auto";>
+                        <div id="map"></div>
+                        
+                    </div>
+                    {{!-- Ad code
+                    <div class="col-lg-3 bg-primary">
+                        <img class="" alt="" src="/img/lewis.gif" width="350rem" height="600rem" >
+                    </div> --}}
+                </div>
+            </div>
+        </section>
+
+
+        <!-- About Section-->
+        {{!-- <section class="page-section bg-white text-black mb-0" id="about">
+            <div class="container">
+                <!-- About Section Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-black">About</h2>
+                
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-dark">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+
+                <!-- About Section Content-->
+                <div class="row">
+                    <div class="col-lg-4 ml-auto"><p class="lead">Albert Tracker is a web application that utilizes Node.js and Bootstrap. It was created as the final project for a class at Lewis University. The members of the group include Alec, George, Lou and Marjie.</p></div>
+                    <div class="col-lg-4 mr-auto"><p class="lead">Albert allows you to upload an image of your choosing to find the exact latitude and longitude of the location the photo was taken. This will only provide infromation on images that were taken with a GPS Camera or a Smart Phone.</p></div>
+                </div>
+            </div>
+        </section> --}}
 
         <!-- Footer-->
         <footer class="footer text-center">
