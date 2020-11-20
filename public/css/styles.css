@@ -6079,7 +6079,7 @@ a.close.disabled {
 }
 
 .bg-menu {
-  background-color: #a7e0ff !important;
+  background-color: #4dc0ff !important;
 }
 
 .bg-gray {
@@ -10108,7 +10108,7 @@ h3 {
     margin-top: 0;
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link.active {
-    color: #fff;
+    color: #2c3e50;
     background: #4dc0ff;
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link.active:active, #mainNav .navbar-nav > li.nav-item > a.nav-link.active:focus, #mainNav .navbar-nav > li.nav-item > a.nav-link.active:hover {
