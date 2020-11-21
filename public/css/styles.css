@@ -1975,7 +1975,6 @@ pre code {
   background-color: #fff;
   background-clip: padding-box;
   border: 0.125rem solid #ced4da;
-  border-radius: 0.5rem !important;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -3457,6 +3456,21 @@ input[type=button].btn-block {
 .input-group > .input-group-prepend:first-child > .input-group-text:not(:first-child) {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+}
+
+/* Creates rounded corners for left side of button */
+.input-group .rounded_left {
+  color: #040505;
+  border-right: none;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+}
+/* Creates rounded corners for right side of button */
+.input-group .rounded_right {
+  color: #040505;
+  border-left: none;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
 }
 
 .custom-control {
