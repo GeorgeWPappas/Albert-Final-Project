@@ -13,23 +13,23 @@
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
         <style type="text/css">
-        /* Always set the map height explicitly to define the size of the div
-        * element that contains the map. */
-        #map {
-            height: 90%;
-            border-radius: 0.5rem !important;
-        }
+            /* Always set the map height explicitly to define the size of the div
+            * element that contains the map. */
+            #map {
+                height: 90%;
+                border-radius: 0.5rem !important;
+            }
         </style>
 
         <script>
-        let map;
+            let map;
 
-        function initMap() {
-            map = new google.maps.Map(document.getElementById("map"), {
-            center: { lat: 41.605540, lng: -88.077220 },
-            zoom: 8,
-            });
-        }
+            function initMap() {
+                map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 41.605540, lng: -88.077220 },
+                zoom: 8,
+                });
+            }
         </script>
         
         <script>
@@ -43,7 +43,7 @@
                 });
 
                 // We can watch for our custom `fileselect` event like this
-                $(document).ready( function() {
+                $(document).ready(function() {
                     $(':file').on('fileselect', function(event, numFiles, label) {
 
                         var input = $(this).parents('.input-group').find(':text'),
@@ -97,6 +97,7 @@
                 <div class="col-lg-8 col-sm-10 col-12 mx-auto"></div>
                     <div class="input-group">
                         <label class="input-group-btn">
+                            
                             <span class="btn bg-secondary text-primary">
                                 Browse&hellip; <input type="file" style="display: none;" accept="image/png, image/jpeg">
                             </span>
