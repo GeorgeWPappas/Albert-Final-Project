@@ -123,6 +123,7 @@ def ConvertToDegrees(gpsCoordinate):
     floatCoordinate = float(degrees + (minutes / 60.0) + (seconds / 3600.0))
 
     return floatCoordinate
+# End ConvertToDegrees ===========================
 
 # Main function.
 if __name__ == '__main__':    
@@ -135,7 +136,7 @@ if __name__ == '__main__':
     print("===== Program Start =====")
     print()
 
-    targetFile = "IMG_7867 copy.jpeg"   # File name.
+    targetFile = 'IMG_7867 copy.jpeg'   # File name.
 
     try:
         gpsDictionary, exifList = ExtractGPSDictionary(targetFile)
@@ -183,3 +184,4 @@ if __name__ == '__main__':
     print()
     print("===== Program End =====")
     print()
+# End Main function ===========================
