@@ -7,59 +7,9 @@
 
 # Import Declarations.
 import os               # Standard Library OS functions
-import argparse         # Python Standard Library - Parser for command-line options, arguments
 import piexif
 import random
 import shutil
-
-#
-# Name: ParseCommand() Function
-#
-# Desc: Process and Validate the command line arguments
-#       use Python Standard Library module argparse
-#
-# Input: none
-#
-# Actions:
-#           Uses the standard library argparse to process the command line
-#
-def ParseCommandLine():
-    parser = argparse.ArgumentParser('Python gpsExtractor')
-
-    parser.add_argument('-v', '--verbose', help="enables printing of additional program messages", action='store_true')
-    parser.add_argument('-i', '--imageName', type=ValidateFileRead, required=True, help="specify the path and file to scan")
-    parser.add_argument('-f', '--fakeImageName', type=str, help="specify the path and file to create", default=os.curdir)
-
-    args = None
-    args = parser.parse_args()
-
-    return args
-# End Parse Command Line ===========================
-
-#
-# Name: ValidateFileRead Function
-#
-# Desc: Function that will validate that a file exists and is readable
-#
-# Input: A file name with full path
-#
-# Actions:
-#           if valid will return path
-#
-#           if invalid it will raise an ArgumentTypeError within argparse
-#           which will inturn be reported by argparse to the user
-#
-def ValidateFileRead(theFile):
-    # Validate the path is a valid
-    if not os.path.exists(theFile):
-        raise argparse.ArgumentTypeError('File does not exist')
-
-    # Validate the path is readable
-    if os.access(theFile, os.R_OK):
-        return theFile
-    else:
-        raise argparse.ArgumentTypeError('File is not readable')
-# End ValidateFileRead =====================================
 
 def genRandomDate(randomDictionary):
     randYear = random.randint(1990, 2020) # Generates random year.
@@ -124,31 +74,26 @@ if __name__ == '__main__':
     GPS_FALSIFIER_VERSION = '1.0'
 
     # Introduction statement.
-    print()
-    print("Starting GPS_Falsifier...")
+    print("===== Program Start =====")
 
     # Dictionary Declaration.
     randomDictionary = {}   # Creates random dictionary.
 
-    args = ParseCommandLine()  # Process the Command Line Arguments.
+    imageName = 'IMG_7867 copy.jpeg'
+    fakeImageName = 'falsified_' + imageName
 
     print()
-    print('Using image: {}'.format(args.imageName))
+    print('Using image: {}'.format(imageName))
 
     genRandomDate(randomDictionary) # Generates random date & time.
     genRandomGPS(randomDictionary)  # Generates random gps values.
 
-    if args.fakeImageName == os.curdir:
-        args.fakeImageName = 'fake_' + os.path.basename(args.imageName)
-    else:
-        args.fakeImageName = os.path.basename(args.fakeImageName)
-
-    shutil.copy(args.imageName, args.fakeImageName)   # Creates copy of image file.
-    fakeImageExifData = piexif.load(args.fakeImageName)   # Loads image EXIF data into imageData.
+    shutil.copy(imageName, fakeImageName)   # Creates copy of image file.
+    fakeImageExifData = piexif.load(fakeImageName)   # Loads image EXIF data into imageData.
     fakeImageGpsData = fakeImageExifData['GPS'] # Loads image GPS data into fakeImageGpsData.
 
     print()
-    print("Current " + args.imageName + " GPS data: {}".format(fakeImageGpsData))
+    print("Current " + imageName + " GPS data: {}".format(fakeImageGpsData))
 
     fakeImageExifData['Exif'][piexif.ExifIFD.DateTimeOriginal] = randomDictionary[0]    # Writes randomized time to fakeImageGpsData.
     fakeImageExifData['Exif'][piexif.ExifIFD.DateTimeDigitized] = randomDictionary[0]   # Writes randomized time to fakeImageGpsData.
@@ -163,20 +108,20 @@ if __name__ == '__main__':
     print("Falsified GPS data: {}".format(fakeImageGpsData))
 
     exif_bytes = piexif.dump(fakeImageExifData) # Converts exif data dictanary into bytes.
-    piexif.insert(exif_bytes, args.fakeImageName)   # Writes falsified data to new file.
+    piexif.insert(exif_bytes, fakeImageName)   # Writes falsified data to new file.
 
     try:
-        if os.path.dirname(args.imageName) is not '':
-            shutil.move(args.fakeImageName, os.path.dirname(args.imageName))    # Moves file to original image directory.
+        if os.path.dirname(imageName) is not '':
+            shutil.move(fakeImageName, os.path.dirname(imageName))    # Moves file to original image directory.
         else:
             print()
             print("File saved in script directory because user did not specify original image directory.")
     except:
-        os.remove(args.fakeImageName)   # Deletes new file if it cannot be moved to new directory.
+        os.remove(fakeImageName)   # Deletes new file if it cannot be moved to new directory.
         print()
         print("File already exists in specified directory. Please delete and try again.")
 
     # Finishing statement.
     print()
-    print("Program Terminated Normally")
+    print("===== Program End =====")
 # End Main Function =====================================
