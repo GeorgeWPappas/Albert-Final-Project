@@ -112,6 +112,10 @@ if __name__ == '__main__':
     exif_bytes = piexif.dump(fakeImageExifData) # Converts exif data dictanary into bytes.
     piexif.insert(exif_bytes, falseImageName)   # Writes falsified data to new file.
 
+    # Save location statement.
+    print()
+    print("File saved in script directory.")
+
     # Finishing statement.
     print()
     print("===== Program End =====")
