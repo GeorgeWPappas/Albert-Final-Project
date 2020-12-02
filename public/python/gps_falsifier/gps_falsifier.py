@@ -11,6 +11,7 @@ import piexif
 import random
 import shutil
 
+# Generates random values for date.
 def genRandomDate(randomDictionary):
     randYear = random.randint(1990, 2020) # Generates random year.
     randMonth = random.randint(1,12)  # Generates random month.
@@ -32,6 +33,7 @@ def genRandomDate(randomDictionary):
     return randomDictionary
 # End genRandomDate =====================================
 
+# Generates random values for GPS.
 def genRandomGPS(randomDictionary):
     # Generates random numbers for latitude.
     randLatDeg = random.randint(0, 89)
