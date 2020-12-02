@@ -71,8 +71,6 @@ def genRandomGPS(randomDictionary):
 
 # Main Function.
 if __name__ == '__main__':
-    GPS_FALSIFIER_VERSION = '1.0'
-
     # Introduction statement.
     print("===== Program Start =====")
 
