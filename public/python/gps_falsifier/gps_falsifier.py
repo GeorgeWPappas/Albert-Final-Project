@@ -94,7 +94,8 @@ if __name__ == '__main__':
 
     # Displays gps data of file.
     print()
-    print("Current " + imageName + " GPS data: {}".format(fakeImageGpsData))
+    print('Real GPS data:')
+    print('{}'.format(fakeImageGpsData))
 
     fakeImageExifData['Exif'][piexif.ExifIFD.DateTimeOriginal] = randomDictionary[0]    # Writes randomized time to fakeImageGpsData.
     fakeImageExifData['Exif'][piexif.ExifIFD.DateTimeDigitized] = randomDictionary[0]   # Writes randomized time to fakeImageGpsData.
@@ -107,7 +108,8 @@ if __name__ == '__main__':
 
     # Displays gps data of falsified file.
     print()
-    print("Falsified GPS data: {}".format(fakeImageGpsData))
+    print('Falsified GPS data:')
+    print('{}'.format(fakeImageGpsData))
 
     exif_bytes = piexif.dump(fakeImageExifData) # Converts exif data dictanary into bytes.
     piexif.insert(exif_bytes, fakeImageName)   # Writes falsified data to new file.
