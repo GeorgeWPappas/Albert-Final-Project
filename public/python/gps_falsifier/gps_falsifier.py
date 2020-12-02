@@ -77,8 +77,8 @@ if __name__ == '__main__':
     # Dictionary Declaration.
     randomDictionary = {}   # Creates random dictionary.
 
-    imageName = 'IMG_7867 copy.jpeg'
-    fakeImageName = 'falsified_' + imageName
+    imageName = 'IMG_7867 copy.jpeg'    # File name.
+    fakeImageName = 'falsified_' + imageName    # File name for image with falsified data.
 
     print()
     print('Using image: {}'.format(imageName))
