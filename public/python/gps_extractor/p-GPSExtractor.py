@@ -135,7 +135,7 @@ if __name__ == '__main__':
     print("===== Program Start =====")
     print()
 
-    targetFile = "IMG_7867 copy.jpeg"
+    targetFile = "IMG_7867 copy.jpeg"   # File name.
 
     try:
         gpsDictionary, exifList = ExtractGPSDictionary(targetFile)
