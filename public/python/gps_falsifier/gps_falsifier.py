@@ -118,6 +118,18 @@ if __name__ == '__main__':
     print()
     print("File saved in script directory.")
 
+    # TODO: delete if needed.
+    #try:
+    #    if os.path.dirname(imageName) is not '':
+    #        shutil.move(falseImageName, os.path.dirname(imageName))    # Moves file to original image directory.
+    #    else:
+    #        print()
+    #        print("File saved in script directory because user did not specify original image directory.")
+    #except:
+    #    os.remove(falseImageName)   # Deletes new file if it cannot be moved to new directory.
+    #    print()
+    #    print("File already exists in specified directory. Please delete and try again.")
+
     # Finishing statement.
     print()
     print("===== Program End =====")
