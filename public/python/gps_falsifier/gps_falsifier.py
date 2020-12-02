@@ -78,7 +78,7 @@ if __name__ == '__main__':
     randomDictionary = {}   # Creates random dictionary.
 
     imageName = 'IMG_7867 copy.jpeg'    # File name.
-    fakeImageName = 'falsified_' + imageName    # File name for image with falsified data.
+    falseImageName = 'FALSIFIED_' + imageName    # File name for image with falsified data.
 
     print()
     print('Using image: {}'.format(imageName))
@@ -86,8 +86,8 @@ if __name__ == '__main__':
     genRandomDate(randomDictionary) # Generates random date & time.
     genRandomGPS(randomDictionary)  # Generates random gps values.
 
-    shutil.copy(imageName, fakeImageName)   # Creates copy of image file.
-    fakeImageExifData = piexif.load(fakeImageName)   # Loads image EXIF data into imageData.
+    shutil.copy(imageName, falseImageName)   # Creates copy of image file.
+    fakeImageExifData = piexif.load(falseImageName)   # Loads image EXIF data into imageData.
     fakeImageGpsData = fakeImageExifData['GPS'] # Loads image GPS data into fakeImageGpsData.
 
     # Displays gps data of file.
@@ -110,18 +110,7 @@ if __name__ == '__main__':
     print('{}'.format(fakeImageGpsData))
 
     exif_bytes = piexif.dump(fakeImageExifData) # Converts exif data dictanary into bytes.
-    piexif.insert(exif_bytes, fakeImageName)   # Writes falsified data to new file.
-
-    try:
-        if os.path.dirname(imageName) is not '':
-            shutil.move(fakeImageName, os.path.dirname(imageName))    # Moves file to original image directory.
-        else:
-            print()
-            print("File saved in script directory because user did not specify original image directory.")
-    except:
-        os.remove(fakeImageName)   # Deletes new file if it cannot be moved to new directory.
-        print()
-        print("File already exists in specified directory. Please delete and try again.")
+    piexif.insert(exif_bytes, falseImageName)   # Writes falsified data to new file.
 
     # Finishing statement.
     print()
