@@ -92,6 +92,7 @@ if __name__ == '__main__':
     fakeImageExifData = piexif.load(fakeImageName)   # Loads image EXIF data into imageData.
     fakeImageGpsData = fakeImageExifData['GPS'] # Loads image GPS data into fakeImageGpsData.
 
+    # Displays gps data of file.
     print()
     print("Current " + imageName + " GPS data: {}".format(fakeImageGpsData))
 
@@ -104,6 +105,7 @@ if __name__ == '__main__':
     fakeImageGpsData[piexif.GPSIFD.GPSLongitude] = randomDictionary[3]  # Writes randomized longitude to fakeImageGpsData.
     fakeImageGpsData[piexif.GPSIFD.GPSLongitudeRef] = randomDictionary[4]   # Writes randomized longitude reference to fakeImageGpsData.
 
+    # Displays gps data of falsified file.
     print()
     print("Falsified GPS data: {}".format(fakeImageGpsData))
 
