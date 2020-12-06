@@ -3,11 +3,11 @@ import azure.functions as func
 import json
 import logging
 
-# # Import Declarations for gps_extractor.
-# # from PIL import Image   # import the Python Image Library
-# # from PIL.ExifTags import TAGS, GPSTAGS  # along with TAGS and GPS related TAGS
+# Import Declarations for gps_extractor.
+from PIL import Image   # import the Python Image Library
+from PIL.ExifTags import TAGS, GPSTAGS  # along with TAGS and GPS related TAGS
 
-# # Extract EXIF Data
+# # Extract EXIF Data.
 # def ExtractGPSDictionary(fileName):
 #     # Open the image.
 #     try:
@@ -58,7 +58,7 @@ import logging
 #         return None, None
 # # End ExtractGPSDictionary ===========================
 
-# # Extract the Latitude and Longitude Values
+# # Extract the Latitude and Longitude Values.
 # def ExtractLatLon(gps):
 #     if (("GPSLatitude" in gps) and ("GPSLongitude" in gps) and ("GPSLatitudeRef" in gps) and ("GPSLongitudeRef" in gps)):
 #         latitude = gps["GPSLatitude"]
@@ -196,7 +196,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
     finalCoordinates = {}   # Creates dictionary.
-    finalCoordinates = start(finalCoordinates)
+    finalCoordinates = start(finalCoordinates)  # Computes file.
     finalCoordinatesJSON = json.dumps(finalCoordinates) # Creates JSON file from dictionary.
 
     print(finalCoordinates)
