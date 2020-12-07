@@ -232,11 +232,11 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     # http://localhost:7071/api/gps_extractor?path=albertfinalprojectfuncti.blob.core.windows.net/uploaded-images&imagename=IMG_7867%20copy.jpeg
 
     finalCoordinates = {}   # Creates dictionary.
-    # finalCoordinates = getGPSCoordinates(img, finalCoordinates)  # Computes file.
+    finalCoordinates = getGPSCoordinates(img, imageName, finalCoordinates)  # Computes file.
     finalCoordinatesJSON = json.dumps(finalCoordinates) # Creates JSON file from dictionary.
 
     print(finalCoordinates)
-    if name:
+    if onlinePath:
         return func.HttpResponse(finalCoordinatesJSON)
     else:
         return func.HttpResponse(
