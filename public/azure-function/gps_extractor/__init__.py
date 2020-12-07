@@ -95,7 +95,7 @@ def ExtractLatLon(gps):
         return None
 # End Extract Lat Lon ===========================
 
-# Convert GPSCoordinates to Degrees
+# Convert GPSCoordinates to Degrees.
 def ConvertToDegrees(gpsCoordinate):
     deg, mins, secs = gpsCoordinate
 
