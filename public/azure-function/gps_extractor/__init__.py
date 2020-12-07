@@ -11,16 +11,14 @@ from PIL.ExifTags import TAGS, GPSTAGS  # along with TAGS and GPS related TAGS
 
 # Extract EXIF Data.
 def ExtractGPSDictionary(fileName):
-    # Open the image.
     try:
-        # pilImage = Image.open(fileName)   # TODO: might del later
-        exifData = fileName._getexif()
+        pilImage = Image.open(BytesIO(fileName.content))    # Opens image & utilizes a binary stream using an in-memory bytes buffer which inherits BufferedIOBase called 'BytesIO'.
+        exifData = pilImage._getexif()  # Extracts EXIF data.
     except IOError:
-        # If exception occurs from PIL processing
-        print("Failed to open image file {}".format(fileName))
+        func.alert("Failed to open image file {}".format(fileName)) # TODO: Change alert as it will crash the code.
         return None, None
 
-    # Iterate through the EXIFData
+    # Iterate through the exifData
     # Searching for GPS Tags
     # Set default values for some image attributes.
     imageTimeStamp = "NA"
@@ -122,14 +120,10 @@ def ConvertToDegrees(gpsCoordinate):
 
 # Runs through script.
 def getGPSCoordinates(targetFile, imageName, coordinates):    
-    # Offsets into the return EXIFData for
-    # TimeStamp, Camera Make and Model
+    # Offsets into the return EXIFData for TimeStamp, Camera Make and Model
     TS = 0
     MAKE = 1
     MODEL = 2
-
-    print(' ')
-    print("===== Program Start =====")
 
     try:
         gpsDictionary, exifList = ExtractGPSDictionary(targetFile)
@@ -154,36 +148,37 @@ def getGPSCoordinates(targetFile, imageName, coordinates):
 
         if (lat and lon and latRef and lonRef):
             if (alt and altRef):
-                coordinates.update(latRef = str(latRef), lat = str(lat), lonRef = str(lonRef), lon = str(lon), alt = str(alt))
+                coordinates.update(latRef = str(latRef), lat = str(lat), lonRef = str(lonRef), lon = str(lon), alt = str(alt))  # Updates coordinate dictionary.
 
+                # Logs image data.
                 logging.info(imageName+':')
                 logging.info('     '+'Latitude:   '+str(latRef)+'  '+str(lat))
                 logging.info('     '+'Longitude:  '+str(lonRef)+'  '+str(lon))
                 logging.info('     '+'Altitude:      '+str(alt))
             else:
-                coordinates.update(latRef = str(latRef), lat = str(lat), lonRef = str(lonRef), lon = str(lon), alt = 'No ALT Data')
+                coordinates.update(latRef = str(latRef), lat = str(lat), lonRef = str(lonRef), lon = str(lon), alt = 'No ALT Data') # Updates coordinate dictionary.
                 
+                # Logs image data.
                 logging.info(imageName+':')
                 logging.info('     '+'Latitude:   '+str(latRef)+'  '+str(lat))
                 logging.info('     '+'Longitude:  '+str(lonRef)+'  '+str(lon))
                 logging.info('     '+'Altitude:      '+'No ALT Data')
         else:
-            coordinates.update(latRef = '-', lat = 'No LAT Data', lonRef = '-', lon = 'No LON Data', alt = 'No ALT Data')
+            coordinates.update(latRef = '-', lat = 'No LAT Data', lonRef = '-', lon = 'No LON Data', alt = 'No ALT Data')   # Updates coordinate dictionary.
 
+            # Logs image data.
             logging.info(imageName+':')
             logging.info('     '+'Latitude:  '+'No LAT Data')
             logging.info('     '+'Longitude: '+'No LON Data')
             logging.info('     '+'Altitude:  '+'No ALT Data')
     else:
-        coordinates.update(latRef = '-', lat = 'No LAT Data', lonRef = '-', lon = 'No LON Data', alt = 'No ALT Data')
+        coordinates.update(latRef = '-', lat = 'No LAT Data', lonRef = '-', lon = 'No LON Data', alt = 'No ALT Data')   # Updates coordinate dictionary.
         
+        # Logs image data.
         logging.info(imageName+':')
         logging.info('     '+'Latitude:  '+'No LAT Data')
         logging.info('     '+'Longitude: '+'No LON Data')
         logging.info('     '+'Altitude:  '+'No ALT Data')
-
-    print("===== Program End =====")
-    print(' ')
 
     return coordinates
 # End getGPSCoordinates ===========================
@@ -192,7 +187,7 @@ def getGPSCoordinates(targetFile, imageName, coordinates):
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
-    # Gets 
+    # Gets image path from URL.
     onlinePath = req.params.get('path')
     if not onlinePath:
         try:
@@ -201,7 +196,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             pass
     else:
         onlinePath = req.params.get('path')
-   
+
+    # Gets image name from URL.
     imageName = req.params.get('imagename')
     if not imageName:
         try:
@@ -211,15 +207,20 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     else:
         imageName = req.params.get('imagename')
 
+    # URL Example: http://localhost:7071/api/gps_extractor?path=albertfinalprojectfuncti.blob.core.windows.net/uploaded-images&imagename=IMG_7867%20copy.jpeg
     url = "https://" + str(onlinePath) + "/" + str(imageName)   # Creates image path URL.
-    response = requests.get(url)    # Gets content from image path URL.
-    img = Image.open(BytesIO(response.content))     # Opens image & utilizes a binary stream using an in-memory bytes buffer which inherits BufferedIOBase called 'BytesIO'.
-    exif = img._getexif()
+    try:
+        response = requests.get(url)    # Gets content from image path URL.
+    except:
+        func.alert('Image file cannot be found')    # TODO: Change alert as it will crash the code.
 
-    # http://localhost:7071/api/gps_extractor?path=albertfinalprojectfuncti.blob.core.windows.net/uploaded-images&imagename=IMG_7867%20copy.jpeg
-
+    logging.info(' ')
+    logging.info("===== Script Start =====")
     finalCoordinates = {}   # Creates dictionary.
-    finalCoordinates = getGPSCoordinates(img, imageName, finalCoordinates)  # Computes file.
+    finalCoordinates = getGPSCoordinates(response, imageName, finalCoordinates)  # Computes file.
+    logging.info("===== Script End =====")
+    logging.info(' ')
+
     finalCoordinatesJSON = json.dumps(finalCoordinates) # Creates JSON file from dictionary.
 
     if onlinePath:
