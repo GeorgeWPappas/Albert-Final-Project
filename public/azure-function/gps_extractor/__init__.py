@@ -202,7 +202,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         except ValueError:
             pass
     else:
-        name = req_body.get('name')
+        # name = req_body.get('name')   # TODO: may delete later.
         name = req.params.get('name')
    
     imagename = req.params.get('imagename')
@@ -212,17 +212,28 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         except ValueError:
             pass
     else:
-        imagename = req_body.get('imagename')
+        # imagename = req_body.get('imagename') # TODO: might delete later. bottom did not exist
+        imagename = req.params.get('imagename')
 
-    url = "https://" + name + "/" + imagename
+    url = "https://" + str(name) + "/" + str(imagename)
+    print()
+    print("======================================")
+    print("name: {}".format(name))
+    print("imagename: {}".format(imagename))
+    print("url: {}".format(url))
+    print("======================================")
+    print()
     response = requests.get(url)
-    img = Image.open(BytesIO(response.content))
+    img = response.content
+    # print('{}'.format(img))
+
+    # http://localhost:7071/api/gps_extractor?name=albertfinalprojectfuncti.blob.core.windows.net/uploaded-images&imagename=IMG_7867%20copy.jpeg
     
     # img = 'DSC00385.JPG'    # TODO: this is a temp img file.
 
 
     finalCoordinates = {}   # Creates dictionary.
-    finalCoordinates = getGPSCoordinates(img, finalCoordinates)  # Computes file.
+    # finalCoordinates = getGPSCoordinates(img, finalCoordinates)  # Computes file.
     finalCoordinatesJSON = json.dumps(finalCoordinates) # Creates JSON file from dictionary.
 
     print(finalCoordinates)
