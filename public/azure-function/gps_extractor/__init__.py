@@ -13,8 +13,8 @@ from PIL.ExifTags import TAGS, GPSTAGS  # along with TAGS and GPS related TAGS
 def ExtractGPSDictionary(fileName):
     # Open the image.
     try:
-        pilImage = Image.open(fileName)
-        exifData = pilImage._getexif()
+        # pilImage = Image.open(fileName)   # TODO: might del later
+        exifData = fileName._getexif()
     except IOError:
         # If exception occurs from PIL processing
         print("Failed to open image file {}".format(fileName))
