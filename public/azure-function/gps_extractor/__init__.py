@@ -229,6 +229,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     
     # img = 'DSC00385.JPG'    # TODO: this is a temp img file.
 
+    # http://localhost:7071/api/gps_extractor?path=albertfinalprojectfuncti.blob.core.windows.net/uploaded-images&imagename=IMG_7867%20copy.jpeg
 
     finalCoordinates = {}   # Creates dictionary.
     # finalCoordinates = getGPSCoordinates(img, finalCoordinates)  # Computes file.
