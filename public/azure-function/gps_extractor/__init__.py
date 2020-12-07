@@ -193,18 +193,18 @@ def getGPSCoordinates(targetFile, imageName, coordinates):
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
-    name = req.params.get('name')
-    if not name:
+    # Gets 
+    onlinePath = req.params.get('path')
+    if not onlinePath:
         try:
             req_body = req.get_json()
         except ValueError:
             pass
     else:
-        # name = req_body.get('name')   # TODO: may delete later.
-        name = req.params.get('name')
+        onlinePath = req.params.get('path')
    
-    imagename = req.params.get('imagename')
-    if not imagename:
+    imageName = req.params.get('imagename')
+    if not imageName:
         try:
             req_body = req.get_json()
         except ValueError:
