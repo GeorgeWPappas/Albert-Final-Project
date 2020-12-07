@@ -186,7 +186,6 @@ def start(coordinates):
     print("===== Program End =====")
     print(' ')
 
-    # coordinates.update(latRef = '-', lat = 'No LAT Data', lonRef = '-', lon = 'No LON Data', alt = 'No ALT Data')
     return coordinates
 # End start ===========================
 
