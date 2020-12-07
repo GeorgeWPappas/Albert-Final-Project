@@ -104,7 +104,7 @@
                         <input type="text" class="form-control" readonly>
                         <label class="input-group-btn">
                             <span class="btn bg-secondary text-primary rounded_right">
-                                Submit <input type="submit" style="display: none;">
+                                Upload <input type="submit" style="display: none;"> {{!-- type is submit for now. May change to upload --}}
                             </span>
                         </label>
                     </div>
@@ -112,7 +112,8 @@
             </div>
         </header>
 
-            {{!-- <div class="container">
+            {{!-- FORMATTED COL. - FAILED 
+            <div class="container">
                 <div class="row mb-5 text-left text-white">
                     <div class="col-lg-6 mx-auto">                                                               
                         <div class="input-group">
@@ -141,7 +142,7 @@
             {{!-- <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg"> --}}
 
 
-            {{!-- FORMATTED COL.
+            {{!-- FORMATTED COL. - FAILED
             <div class="container-fluid text-center ">    
                 <div class="row content">
                     <div class="col-sm-3">
@@ -179,13 +180,14 @@
                     <div class="col-lg-3 col-md-12 col-sm-12 col-12 col-xl-3 bg-primary">
                         <h3 style="page-section-heading text-center">information</h3>
 
+                        {{!-- DECIDED AGAINST
                         <p class="text-uppercase text-black ">File Name: </p>
                         <input id="name" type="text" value=""  size="25" style="" disabled >
-                        <br>
+                        <br> --}}
 
                         <p class="text-uppercase text-black ">Date:  </p>
                         <input id="date" type="text" value="" size="25" style="" disabled >
-                        <br>
+                        <br><br>
 
                         <p class="text-uppercase text-black ">Longitude: </p>
                         <input id="lon" type="text" value="" size="25" style="" disabled >
@@ -195,12 +197,8 @@
                         <input id="lat" type="text" value="" size="25" style="" disabled >
                         <br>
 
-                        <p class="text-uppercase text-black ">Camera Make: </p>
+                        <p class="text-uppercase text-black ">Altitude: </p>
                         <input id="make" type="text" value="" size="25" style="" disabled >
-                        <br>
-
-                        <p class="text-uppercase text-black ">Model: </p>
-                        <input id="model" type="text" value="" size="25" style="" disabled >
 
                         <br><br>
                     </div>
@@ -208,17 +206,13 @@
                         <div id="map"></div>
                         
                     </div>
-                    {{!-- Ad code
+                    {{!-- Ad code DECIDED AGAINST
                     <div class="col-lg-3 bg-primary">
                         <img class="" alt="" src="/img/lewis.gif" width="350rem" height="600rem" >
                     </div> --}}
                 </div>
             </div>
         </section>
-
-
-
-        {{!-- <div id="map"></div> --}}
 
         <!-- About Section-->
         <section class="page-section bg-white text-black mb-0" id="about">

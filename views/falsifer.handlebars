@@ -104,7 +104,7 @@
                         <input type="text" class="form-control" readonly>
                         <label class="input-group-btn">
                             <span class="btn bg-secondary text-primary rounded_right">
-                                Submit <input type="submit" style="display: none;">
+                                Upload <input type="submit" style="display: none;">
                             </span>
                         </label>
                     </div>
@@ -178,15 +178,14 @@
                     <div class="col-lg-3 col-md-12 col-sm-12 col-12 col-xl-3 bg-primary">
                         <h3 class="text-white" style="page-section-heading text-center">falsified information</h3>
 
+                        {{!-- DO NOT NEED 
                         <p class="text-uppercase text-black ">File Name: </p>
                         <input id="name" type="text" value=""  size="25" style="" disabled >
                         <br><br>
 
-                        {{!-- <p class="text-uppercase text-black ">Date:  </p>
-                        <input id="date" type="text" value="" size="40" style="" disabled >
-                        <br> --}}
-
-
+                        <p class="text-uppercase text-black ">Date:  </p>
+                        <input id="date" type="text" value="" size="25" style="" disabled >
+                        <br><br> --}}
 
                         <p class="text-uppercase text-black ">Longitude: </p>
                         <input id="lon" type="text" value="" size="25" style="" disabled >
@@ -194,18 +193,24 @@
 
                         <p class="text-uppercase text-black ">Latitude: </p>
                         <input id="lat" type="text" value="" size="25" style="" disabled >
+                        <br>
+
+                        <p class="text-uppercase text-black ">Altitude: </p>
+                        <input id="make" type="text" value="" size="25" style="" disabled >
                         <br><br>
 
                         <p class="text-uppercase text-red font-weight-bold">NEW Longitude: </p>
                         <input id="new-lon" type="text" value="" size="25" style="" disabled >
                         <br>
 
-
                         <p class="text-uppercase text-red font-weight-bold">NEW Latitude: </p>
                         <input id="new-lat" type="text" value="" size="25" style="" disabled >
                         <br>
 
-                        {{!-- <p class="text-uppercase text-black ">Camera Make: </p>
+
+
+                        {{!-- DECIDED AGAINST
+                        <p class="text-uppercase text-black ">Camera Make: </p>
                         <input id="make" type="text" value="" size="40" style="" disabled >
                         <br>
 
@@ -218,7 +223,7 @@
                         <div id="map"></div>
                         
                     </div>
-                    {{!-- Ad code
+                    {{!-- Ad code DECIDED AGAINST
                     <div class="col-lg-3 bg-primary">
                         <img class="" alt="" src="/img/lewis.gif" width="350rem" height="600rem" >
                     </div> --}}
@@ -227,26 +232,7 @@
         </section>
 
 
-        <!-- About Section-->
-        {{!-- <section class="page-section bg-white text-black mb-0" id="about">
-            <div class="container">
-                <!-- About Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-black">About</h2>
-                
-                <!-- Icon Divider-->
-                <div class="divider-custom divider-dark">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                    <div class="divider-custom-line"></div>
-                </div>
 
-                <!-- About Section Content-->
-                <div class="row">
-                    <div class="col-lg-4 ml-auto"><p class="lead">Albert Tracker is a web application that utilizes Node.js and Bootstrap. It was created as the final project for a class at Lewis University. The members of the group include Alec, George, Lou and Marjie.</p></div>
-                    <div class="col-lg-4 mr-auto"><p class="lead">Albert allows you to upload an image of your choosing to find the exact latitude and longitude of the location the photo was taken. This will only provide infromation on images that were taken with a GPS Camera or a Smart Phone.</p></div>
-                </div>
-            </div>
-        </section> --}}
 
         <!-- Footer-->
         <footer class="footer text-center">
