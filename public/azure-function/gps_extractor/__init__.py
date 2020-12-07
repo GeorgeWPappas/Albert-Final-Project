@@ -158,7 +158,7 @@ def getGPSCoordinates(uploadedImage, coordinates):
         if (lat and lon and latRef and lonRef):
             if (alt and altRef):
                 coordinates.update(latRef = str(latRef), lat = str(lat), lonRef = str(lonRef), lon = str(lon), alt = str(alt))
-
+                
                 print(targetFile+':')
                 print('     '+'Latitude:   '+str(latRef)+'  '+str(lat))
                 print('     '+'Longitude:  '+str(lonRef)+'  '+str(lon))
