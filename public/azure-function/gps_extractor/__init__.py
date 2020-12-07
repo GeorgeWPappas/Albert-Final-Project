@@ -12,6 +12,7 @@ from PIL.ExifTags import TAGS, GPSTAGS  # along with TAGS and GPS related TAGS
 # Extract EXIF Data.
 def ExtractGPSDictionary(fileName):
     try:
+        # TODO: Check if see if BytesIO needs to be closed.
         pilImage = Image.open(BytesIO(fileName.content))    # Opens image & utilizes a binary stream using an in-memory bytes buffer which inherits BufferedIOBase called 'BytesIO'.
         exifData = pilImage._getexif()  # Extracts EXIF data.
     except IOError:
