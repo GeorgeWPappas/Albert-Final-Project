@@ -122,7 +122,7 @@ def ConvertToDegrees(gpsCoordinate):
 # End ConvertToDegrees ===========================
 
 # Runs through script.
-def getGPSCoordinates(uploadedImage, coordinates):    
+def getGPSCoordinates(targetFile, imageName, coordinates):    
     # Offsets into the return EXIFData for
     # TimeStamp, Camera Make and Model
     TS = 0
@@ -131,8 +131,6 @@ def getGPSCoordinates(uploadedImage, coordinates):
 
     print(' ')
     print("===== Program Start =====")
-
-    targetFile = uploadedImage   # File name.
 
     try:
         gpsDictionary, exifList = ExtractGPSDictionary(targetFile)
@@ -158,32 +156,32 @@ def getGPSCoordinates(uploadedImage, coordinates):
         if (lat and lon and latRef and lonRef):
             if (alt and altRef):
                 coordinates.update(latRef = str(latRef), lat = str(lat), lonRef = str(lonRef), lon = str(lon), alt = str(alt))
-                
-                print(targetFile+':')
-                print('     '+'Latitude:   '+str(latRef)+'  '+str(lat))
-                print('     '+'Longitude:  '+str(lonRef)+'  '+str(lon))
-                print('     '+'Altitude:      '+str(alt))
+
+                logging.info(imageName+':')
+                logging.info('     '+'Latitude:   '+str(latRef)+'  '+str(lat))
+                logging.info('     '+'Longitude:  '+str(lonRef)+'  '+str(lon))
+                logging.info('     '+'Altitude:      '+str(alt))
             else:
                 coordinates.update(latRef = str(latRef), lat = str(lat), lonRef = str(lonRef), lon = str(lon), alt = 'No ALT Data')
-
-                print(targetFile+':')
-                print('     '+'Latitude:   '+str(latRef)+'  '+str(lat))
-                print('     '+'Longitude:  '+str(lonRef)+'  '+str(lon))
-                print('     '+'Altitude:      '+'No ALT Data')
+                
+                logging.info(imageName+':')
+                logging.info('     '+'Latitude:   '+str(latRef)+'  '+str(lat))
+                logging.info('     '+'Longitude:  '+str(lonRef)+'  '+str(lon))
+                logging.info('     '+'Altitude:      '+'No ALT Data')
         else:
             coordinates.update(latRef = '-', lat = 'No LAT Data', lonRef = '-', lon = 'No LON Data', alt = 'No ALT Data')
 
-            print(targetFile+':')
-            print('     '+'Latitude:  '+'No LAT Data')
-            print('     '+'Longitude: '+'No LON Data')
-            print('     '+'Altitude:  '+'No ALT Data')
+            logging.info(imageName+':')
+            logging.info('     '+'Latitude:  '+'No LAT Data')
+            logging.info('     '+'Longitude: '+'No LON Data')
+            logging.info('     '+'Altitude:  '+'No ALT Data')
     else:
         coordinates.update(latRef = '-', lat = 'No LAT Data', lonRef = '-', lon = 'No LON Data', alt = 'No ALT Data')
-
-        print(targetFile+':')
-        print('     '+'Latitude:  '+'No LAT Data')
-        print('     '+'Longitude: '+'No LON Data')
-        print('     '+'Altitude:  '+'No ALT Data')
+        
+        logging.info(imageName+':')
+        logging.info('     '+'Latitude:  '+'No LAT Data')
+        logging.info('     '+'Longitude: '+'No LON Data')
+        logging.info('     '+'Altitude:  '+'No ALT Data')
 
     print("===== Program End =====")
     print(' ')
