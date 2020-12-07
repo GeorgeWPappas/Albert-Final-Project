@@ -1,5 +1,7 @@
 # Import Declarations for Azure Functions.
 import azure.functions as func
+import requests
+from io import BytesIO
 import json
 import logging
 
@@ -120,7 +122,7 @@ def ConvertToDegrees(gpsCoordinate):
 # End ConvertToDegrees ===========================
 
 # Runs through script.
-def start(coordinates):    
+def getGPSCoordinates(uploadedImage, coordinates):    
     # Offsets into the return EXIFData for
     # TimeStamp, Camera Make and Model
     TS = 0
@@ -130,7 +132,7 @@ def start(coordinates):
     print(' ')
     print("===== Program Start =====")
 
-    targetFile = 'IMG_7867 copy.jpeg'   # File name.
+    targetFile = uploadedImage   # File name.
 
     try:
         gpsDictionary, exifList = ExtractGPSDictionary(targetFile)
@@ -187,16 +189,48 @@ def start(coordinates):
     print(' ')
 
     return coordinates
-# End start ===========================
+# End getGPSCoordinates ===========================
 
 # Main function.
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
+    name = req.params.get('name')
+    if not name:
+        try:
+            req_body = req.get_json()
+        except ValueError:
+            pass
+    else:
+        name = req_body.get('name')
+        name = req.params.get('name')
+   
+    imagename = req.params.get('imagename')
+    if not imagename:
+        try:
+            req_body = req.get_json()
+        except ValueError:
+            pass
+    else:
+        imagename = req_body.get('imagename')
+
+    url = "https://" + name + "/" + imagename
+    response = requests.get(url)
+    img = Image.open(BytesIO(response.content))
+    
+    # img = 'DSC00385.JPG'    # TODO: this is a temp img file.
+
+
     finalCoordinates = {}   # Creates dictionary.
-    finalCoordinates = start(finalCoordinates)  # Computes file.
+    finalCoordinates = getGPSCoordinates(img, finalCoordinates)  # Computes file.
     finalCoordinatesJSON = json.dumps(finalCoordinates) # Creates JSON file from dictionary.
 
     print(finalCoordinates)
-    return func.HttpResponse(finalCoordinatesJSON)
+    if name:
+        return func.HttpResponse(finalCoordinatesJSON)
+    else:
+        return func.HttpResponse(
+            "File was not found",
+            status_code=400
+        )
 # End Main function ===========================
