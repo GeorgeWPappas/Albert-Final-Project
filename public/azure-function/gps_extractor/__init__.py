@@ -210,24 +210,12 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         except ValueError:
             pass
     else:
-        # imagename = req_body.get('imagename') # TODO: might delete later. bottom did not exist
-        imagename = req.params.get('imagename')
+        imageName = req.params.get('imagename')
 
-    url = "https://" + str(name) + "/" + str(imagename)
-    print()
-    print("======================================")
-    print("name: {}".format(name))
-    print("imagename: {}".format(imagename))
-    print("url: {}".format(url))
-    print("======================================")
-    print()
-    response = requests.get(url)
-    img = response.content
-    # print('{}'.format(img))
-
-    # http://localhost:7071/api/gps_extractor?name=albertfinalprojectfuncti.blob.core.windows.net/uploaded-images&imagename=IMG_7867%20copy.jpeg
-    
-    # img = 'DSC00385.JPG'    # TODO: this is a temp img file.
+    url = "https://" + str(onlinePath) + "/" + str(imageName)   # Creates image path URL.
+    response = requests.get(url)    # Gets content from image path URL.
+    img = Image.open(BytesIO(response.content))     # Opens image & utilizes a binary stream using an in-memory bytes buffer which inherits BufferedIOBase called 'BytesIO'.
+    exif = img._getexif()
 
     # http://localhost:7071/api/gps_extractor?path=albertfinalprojectfuncti.blob.core.windows.net/uploaded-images&imagename=IMG_7867%20copy.jpeg
 
