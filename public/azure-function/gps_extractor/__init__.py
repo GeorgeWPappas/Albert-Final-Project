@@ -82,7 +82,7 @@ def ExtractLatLon(gps):
         if latitudeRef == "W":
             lat = 0 - lon
 
-        # Update 1.1: Added support for altitude.
+        # Checks for altitude.
         if (("GPSAltitude" in gps) and ("GPSAltitudeRef" in gps)):
             altitude = gps['GPSAltitude']
             altitudeRef = gps['GPSAltitudeRef']
@@ -90,7 +90,6 @@ def ExtractLatLon(gps):
             gpsCoor = {"Lat": lat, "LatRef":latitudeRef, "Lon": lon, "LonRef": longitudeRef, "Alt": altitude, "AltRef": altitudeRef}
         else:
             gpsCoor = {"Lat": lat, "LatRef":latitudeRef, "Lon": lon, "LonRef": longitudeRef, "Alt": '', "AltRef": ''}
-        # End Update 1.1 ===========================
 
         return gpsCoor
     else:
