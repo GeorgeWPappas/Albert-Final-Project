@@ -222,7 +222,6 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     finalCoordinates = getGPSCoordinates(img, imageName, finalCoordinates)  # Computes file.
     finalCoordinatesJSON = json.dumps(finalCoordinates) # Creates JSON file from dictionary.
 
-    print(finalCoordinates)
     if onlinePath:
         return func.HttpResponse(finalCoordinatesJSON)
     else:
