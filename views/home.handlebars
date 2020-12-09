@@ -111,6 +111,7 @@
             </div>
         </nav>
 
+        {{!-- WORKING HEADER
         <!-- Masthead-->
         <header class="masthead bg-primary text-white text-center">
             <form method="POST" action="https://albert-upload-image.azurewebsites.net/api/Upload-User-Image?code=y6cWO/8xzFfJqBXgg47QTMmm2iK/xJ37pV68xVhIaBxpvhDT9J536g==" enctype="multipart/form-data" target="_blank"> <!-- LOU HATES FORMS -->
@@ -130,13 +131,36 @@
                         </label>
 
                         <label class="input-group-btn">
-                            <button class="btn bg-secondary text-primary rounded_right" onclick="printEXIF(filename)">
+                            <button class="btn bg-secondary text-primary rounded_right" onclick="showMarker()">
                                 Submit 
                             </button>
                         </label>
                     </div>
                 </div>
             </form>
+        </header> --}}
+
+        <!-- Masthead TRYING TO MOVE FORM INTO SCRIPT -->
+        <header class="masthead bg-primary text-white text-center">
+                <!-- Choose file explorer bar -->
+                <div class="container">
+                    <div class="input-group">
+                    
+                        <label class="input-group-btn">
+                            <span class="btn bg-secondary text-primary rounded_left">
+                                Browse&hellip; <input type="file" id="myfile" name="filename" style="display: none;" accept="image/png, image/jpeg">
+                            </span>
+                        </label>
+                        
+                        <input type="text" class="form-control" readonly>
+                        
+                        <label class="input-group-btn">
+                            <button class="btn bg-secondary text-primary rounded_right" onclick="doall()">
+                                Upload <input type="submit" style="display: none;">
+                            </button>
+                        </label>
+                    </div>
+                </div>
         </header>
 
         {{!-- coordinates.update(latRef = str(latRef), lat = str(lat), lonRef = str(lonRef), lon = str(lon), alt = str(alt)) --}}
