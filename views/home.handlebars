@@ -124,8 +124,14 @@
                         </label>
                         <input type="text" class="form-control" readonly>
                         <label class="input-group-btn">
-                            <button class="btn bg-secondary text-primary rounded_right" >
+                            <button class="btn bg-secondary text-primary rounded_right">
                                 Upload <input type="submit" style="display: none;"> {{!-- type is submit for now. May change to upload --}}
+                            </button>
+                        </label>
+
+                        <label class="input-group-btn">
+                            <button class="btn bg-secondary text-primary rounded_right" onclick="printEXIF(filename)">
+                                Submit 
                             </button>
                         </label>
                     </div>
@@ -133,68 +139,68 @@
             </form>
         </header>
 
-            {{!-- coordinates.update(latRef = str(latRef), lat = str(lat), lonRef = str(lonRef), lon = str(lon), alt = str(alt)) --}}
+        {{!-- coordinates.update(latRef = str(latRef), lat = str(lat), lonRef = str(lonRef), lon = str(lon), alt = str(alt)) --}}
 
-            {{!-- FORMATTED COL. - FAILED
-            <div class="container">
-                <div class="row mb-5 text-left text-white">
-                    <div class="col-lg-6 mx-auto">                                                               
-                        <div class="input-group">
-                            <div class="custom-file">  
-                                <input type="file" class="custom-file-label rounded-pill" id="fileInput" accept="image/png, image/jpeg">
-                                <label  for="fileInput">Choose file</label>   
-                            </div> 
-                        </div>
-                    </div>                                                             
-                </div> 
-            </div> --}}
-
-            {{!-- <div class="container">
-                <div class="row mb-5 text-left text-white">
-                    <div class="col-lg-6 mx-auto">                                                               
-                        <div class="input-group">
-                            <div class="custom-file">    
-                                <input type="file" class="custom-file-input rounded-pill" id="fileInput" aria-describedby="fileInput">
-                                <label class="custom-file-label rounded-pill" for="fileInput">Choose file</label>   
-                            </div>  
-                        </div>
-                    </div>                                                             
-                </div>      
-            </div> --}}
-            
-            {{!-- <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg"> --}}
-
-
-            {{!-- FORMATTED COL. - FAILED
-            <div class="container-fluid text-center ">    
-                <div class="row content">
-                    <div class="col-sm-3">
-                        <h3 style="page-section-heading text-center">information</h3>
-                        <br>
-                        <p class="text-uppercase text-black">File Name: </p>
-                        <p class="text-uppercase text-black">Date: </p>
-                        <br>
-                        <p class="text-uppercase text-black">Longitude: </p>
-                        <p class="text-uppercase text-black">Latitude: </p>
-                        <br>
-                        <p class="text-uppercase text-black">Camera Make: </p>
-                        <p class="text-uppercase text-black">Model: </p>
+        {{!-- FORMATTED COL. - FAILED
+        <div class="container">
+            <div class="row mb-5 text-left text-white">
+                <div class="col-lg-6 mx-auto">                                                               
+                    <div class="input-group">
+                        <div class="custom-file">  
+                            <input type="file" class="custom-file-label rounded-pill" id="fileInput" accept="image/png, image/jpeg">
+                            <label  for="fileInput">Choose file</label>   
+                        </div> 
                     </div>
-                    
-                    <div class="col-sm-6 text-left"> 
-                        <div id="map"></div>
+                </div>                                                             
+            </div> 
+        </div> --}}
+
+        {{!-- <div class="container">
+            <div class="row mb-5 text-left text-white">
+                <div class="col-lg-6 mx-auto">                                                               
+                    <div class="input-group">
+                        <div class="custom-file">    
+                            <input type="file" class="custom-file-input rounded-pill" id="fileInput" aria-describedby="fileInput">
+                            <label class="custom-file-label rounded-pill" for="fileInput">Choose file</label>   
+                        </div>  
                     </div>
-                    
-                    <div class="col-sm-2 sidenav">
-                        <div class="well">
-                            <p>ADS</p>
-                        </div>
-                        <div class="well">
-                            <p>ADS</p>
-                        </div>
+                </div>                                                             
+            </div>      
+        </div> --}}
+        
+        {{!-- <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg"> --}}
+
+
+        {{!-- FORMATTED COL. - FAILED
+        <div class="container-fluid text-center ">    
+            <div class="row content">
+                <div class="col-sm-3">
+                    <h3 style="page-section-heading text-center">information</h3>
+                    <br>
+                    <p class="text-uppercase text-black">File Name: </p>
+                    <p class="text-uppercase text-black">Date: </p>
+                    <br>
+                    <p class="text-uppercase text-black">Longitude: </p>
+                    <p class="text-uppercase text-black">Latitude: </p>
+                    <br>
+                    <p class="text-uppercase text-black">Camera Make: </p>
+                    <p class="text-uppercase text-black">Model: </p>
+                </div>
+                
+                <div class="col-sm-6 text-left"> 
+                    <div id="map"></div>
+                </div>
+                
+                <div class="col-sm-2 sidenav">
+                    <div class="well">
+                        <p>ADS</p>
+                    </div>
+                    <div class="well">
+                        <p>ADS</p>
                     </div>
                 </div>
-            </div> --}}
+            </div>
+        </div> --}}
             
         <section class="bg-primary text-white text-center">
             {{!-- GREEN COL. --}}
@@ -225,9 +231,9 @@
 
                         <br><br>
                     </div>
+                    
                     <div class="col-lg-9 col-md-12 col-sm-12 col-12 col-xl-9" style="height: 40rem; width: auto";>
                         <div id="map"></div>
-                        
                     </div>
                     {{!-- Ad code DECIDED AGAINST
                     <div class="col-lg-3 bg-primary">
