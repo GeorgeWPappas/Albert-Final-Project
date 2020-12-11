@@ -104,14 +104,14 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger active" href="/">Home</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger bg-secondary" href="/falsifer">Falsifer</a></li>
+                        {{!-- <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger bg-secondary" href="/falsifer">Falsifer</a></li> --}}
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger bg-secondary" href="/about">About</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
 
-        {{!-- WORKING HEADER
+        {{!-- WORKING HEADER --}}
         <!-- Masthead-->
         <header class="masthead bg-primary text-white text-center">
             <form method="POST" action="https://albert-upload-image.azurewebsites.net/api/Upload-User-Image?code=y6cWO/8xzFfJqBXgg47QTMmm2iK/xJ37pV68xVhIaBxpvhDT9J536g==" enctype="multipart/form-data" target="_blank"> <!-- LOU HATES FORMS -->
@@ -126,21 +126,20 @@
                         <input type="text" class="form-control" readonly>
                         <label class="input-group-btn">
                             <button class="btn bg-secondary text-primary rounded_right">
-                                Upload <input type="submit" style="display: none;"> {{!-- type is submit for now. May change to upload --}}
+                                Upload <input type="submit" style="display: none;"> 
                             </button>
                         </label>
-
                         <label class="input-group-btn">
-                            <button class="btn bg-secondary text-primary rounded_right" onclick="showMarker()">
-                                Submit 
-                            </button>
+                            <span class="btn bg-secondary text-primary rounded space" onclick="doall()"> 
+                                Execute 
+                            </span>
                         </label>
                     </div>
                 </div>
             </form>
-        </header> --}}
+        </header>
 
-        <!-- Masthead TRYING TO MOVE FORM INTO SCRIPT -->
+        {{!-- <!-- Masthead TRYING TO MOVE FORM INTO SCRIPT -->
         <header class="masthead bg-primary text-white text-center">
                 <!-- Choose file explorer bar -->
                 <div class="container">
@@ -161,7 +160,7 @@
                         </label>
                     </div>
                 </div>
-        </header>
+        </header> --}}
 
         {{!-- coordinates.update(latRef = str(latRef), lat = str(lat), lonRef = str(lonRef), lon = str(lon), alt = str(alt)) --}}
 
@@ -336,9 +335,9 @@
         <!-- Third party plugin JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         
-        <!-- Contact form JS-->
-        <script src="assets/mail/jqBootstrapValidation.js"></script>
-        <script src="assets/mail/contact_me.js"></script>
+        <!-- Contact form JS NOT USED-->
+        {{!-- <script src="assets/mail/jqBootstrapValidation.js"></script>
+        <script src="assets/mail/contact_me.js"></script> --}}
         
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>

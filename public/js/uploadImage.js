@@ -1,82 +1,81 @@
-function uploadImage() {
+// DECIDED AGAINST USING 2 BUTTONS INSTEAD
+// function uploadImage() {
 
-    var input = document.querySelector('input[type="file"]')
-    alert(input.files)
+//     var input = document.querySelector('input[type="file"]')
+//     alert(input.value)
 
-    var data = new FormData()
-    data.append('file', input.files[0])
-    // data.append('user', 'hubot')
-    fetch('https://albert-upload-image.azurewebsites.net/api/Upload-User-Image?code=y6cWO/8xzFfJqBXgg47QTMmm2iK/xJ37pV68xVhIaBxpvhDT9J536g==', {
-        method: 'POST',
-        body: data,
-    }).then(
-        response => response.json(), // if the response is a JSON object
-    ).then(
-        success => alert(success), // Handle the success response object
-    ).catch(
-        error => alert(error), // Handle the error response object  
-    );
-
-
+//     var data = new FormData()
+//     data.append('file', input.files[0])
+//     // data.append('user', 'hubot')
+//     fetch('https://albert-upload-image.azurewebsites.net/api/Upload-User-Image?code=y6cWO/8xzFfJqBXgg47QTMmm2iK/xJ37pV68xVhIaBxpvhDT9J536g==', {
+//         method: 'POST',
+//         body: data,
+//     }).then(
+//         response => response.json(), // if the response is a JSON object
+//     ).then(
+//         success => alert(success), // Handle the success response object
+//     ).catch(
+//         error => alert(error), // Handle the error response object  
+//     );
 
 
-    // // Select your input type file and store it in a variable
-    // const input = document.getElementById('filename');
+
+
+//     // // Select your input type file and store it in a variable
+//     // const input = document.getElementById('filename');
     
-    // // This will upload the file after having read it
-    // const upload = (file) => {
-    //     fetch('https://albert-upload-image.azurewebsites.net/api/Upload-User-Image?code=y6cWO/8xzFfJqBXgg47QTMmm2iK/xJ37pV68xVhIaBxpvhDT9J536g==', { // Your POST endpoint
-    //         method: 'POST',
-    //         body: file // This is your file object
-    //     }).then(
-    //         alert('hi'),
-    //         response => response.json() // if the response is a JSON object
-    //     ).then(
-    //         alert('image uploaded'),
-    //         success => console.log(success) // Handle the success response object
-    //     ).catch(
-    //         alert('failed'),
-    //         error => console.log(error) // Handle the error response object 
-    //     );
-    // };
-    // // Event handler executed when a file is selected
-    // const onSelectFile = () => upload(input.files[0]);
+//     // // This will upload the file after having read it
+//     // const upload = (file) => {
+//     //     fetch('https://albert-upload-image.azurewebsites.net/api/Upload-User-Image?code=y6cWO/8xzFfJqBXgg47QTMmm2iK/xJ37pV68xVhIaBxpvhDT9J536g==', { // Your POST endpoint
+//     //         method: 'POST',
+//     //         body: file // This is your file object
+//     //     }).then(
+//     //         alert('hi'),
+//     //         response => response.json() // if the response is a JSON object
+//     //     ).then(
+//     //         alert('image uploaded'),
+//     //         success => console.log(success) // Handle the success response object
+//     //     ).catch(
+//     //         alert('failed'),
+//     //         error => console.log(error) // Handle the error response object 
+//     //     );
+//     // };
+//     // // Event handler executed when a file is selected
+//     // const onSelectFile = () => upload(input.files[0]);
 
-    // // Add a listener on your input
-    // // It will be triggered when a file will be selected
-    // input.addEventListener('change', onSelectFile, false);
+//     // // Add a listener on your input
+//     // // It will be triggered when a file will be selected
+//     // input.addEventListener('change', onSelectFile, false);
 
 
+//     // FAILED
+//     // var form = document.createElement("form"); 
+//     // alert('test1')
+//     // form.setAttribute("method", "post"); 
+//     // alert('test2')
+//     // form.setAttribute("action", "https://albert-upload-image.azurewebsites.net/api/Upload-User-Image?code=y6cWO/8xzFfJqBXgg47QTMmm2iK/xJ37pV68xVhIaBxpvhDT9J536g=="); 
+//     // alert('test3')
+//     // form.setAttribute("enctype", "multipart/form-data");
+//     // alert('test4')
+//     // form.setAttribute("target", "_blank");
 
-    // FAILED
-    // var form = document.createElement("form"); 
-    // alert('test1')
-    // form.setAttribute("method", "post"); 
-    // alert('test2')
-    // form.setAttribute("action", "https://albert-upload-image.azurewebsites.net/api/Upload-User-Image?code=y6cWO/8xzFfJqBXgg47QTMmm2iK/xJ37pV68xVhIaBxpvhDT9J536g=="); 
-    // alert('test3')
-    // form.setAttribute("enctype", "multipart/form-data");
-    // alert('test4')
-    // form.setAttribute("target", "_blank");
+//     // var i = document.createElement("input"); //input element, text
+//     // i.setAttribute('type',"file");
+//     // i.setAttribute('name',"filename");  
 
-    // var i = document.createElement("input"); //input element, text
-    // i.setAttribute('type',"file");
-    // i.setAttribute('name',"filename");  
+//     // var s = document.createElement("input"); //input element, Submit button
+//     // s.setAttribute('type',"submit");
+//     // s.setAttribute('value',"Submit");
 
-    // var s = document.createElement("input"); //input element, Submit button
-    // s.setAttribute('type',"submit");
-    // s.setAttribute('value',"Submit");
+//     // form.appendChild(i);
+//     // form.appendChild(s);
 
-    // form.appendChild(i);
-    // form.appendChild(s);
+//     // document.getElementsByTagName('body')[0].appendChild(form);
 
-    // document.getElementsByTagName('body')[0].appendChild(form);
-
-    // alert(form.value)
-}
+//     // alert(form.value)
+// }
 
 function printEXIF() {
-    alert('printing info')
 
     //FAILED 
     // document.forms[filename].action='action="https://albert-upload-image.azurewebsites.net/api/Upload-User-Image?code=y6cWO/8xzFfJqBXgg47QTMmm2iK/xJ37pV68xVhIaBxpvhDT9J536g=="';
@@ -84,22 +83,27 @@ function printEXIF() {
     // document.forms[filename].target='_blank';
     // document.forms[filename].enctype="multipart/form-data";
     // document.forms[filename].submit();
-
     // alert(filename.value)
-
-
-
-    //FAILED
-    // var txt = 'https://albert-final-project-function.azurewebsites.net/api/gps_extractor?'
-    // var obj = JSON.parse(txt);
-
-    // alert(obj);
-
+    
+    
+    // const data = 'https://albert-final-project-function.azurewebsites.net/api/gps_extractor?path=albertfinalprojectfuncti.blob.core.windows.net/uploaded-images&imagename=' + 'Biking.jpg'
+    
+    // results = getData(data)
+    // alert(results)
+    // var obj = JSON.parse(results);
+    
     // document.getElementById("date").innerHTML = obj.date;
     // document.getElementById("latitude").innerHTML = obj.latRef + " " + obj.lat;
     // document.getElementById("longitude").innerHTML = obj.lonRef + " " + obj.lon;
     // document.getElementById("altitude").innerHTML = obj.alt;
 }
+
+// async function getData(data) {
+//     const response = await fetch(data)
+//     const results = await response.json()
+//     return results
+// }
+
 
 // add random marker to map for testing purposes
 function showMarker() {
@@ -125,9 +129,8 @@ function showMarker() {
 }
 
 function doall() {
-    uploadImage()
+    // uploadImage()
 
     printEXIF()
-
     showMarker()
 }
