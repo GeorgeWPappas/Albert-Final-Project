@@ -75,7 +75,7 @@
 //     // alert(form.value)
 // }
 
-function printEXIF() {
+async function printEXIF() {
 
     //FAILED 
     // document.forms[filename].action='action="https://albert-upload-image.azurewebsites.net/api/Upload-User-Image?code=y6cWO/8xzFfJqBXgg47QTMmm2iK/xJ37pV68xVhIaBxpvhDT9J536g=="';
@@ -88,15 +88,18 @@ function printEXIF() {
     
     const data = 'https://albert-final-project-function.azurewebsites.net/api/gps_extractor?path=albertfinalprojectfuncti.blob.core.windows.net/uploaded-images&imagename=' + 'Biking.jpg'
     
-    obj = getData(data)
-    // alert(obj)
-    // var obj = JSON.parse(results);
+    obj = await getData(data);
+
+
     
     // document.getElementById("date").value = obj.date;
-    document.getElementById("longitude").value = obj.lonRef + " " + obj.lon;
-    document.getElementById("latitude").value = obj.latRef + " " + obj.lat;
+    document.getElementById("longitude").value = obj.lonRef + "  " + obj.lon;
+    document.getElementById("latitude").value = obj.latRef + "  " + obj.lat;
     document.getElementById("altitude").value = obj.alt;
+
+    return obj
 }
+
 
 async function getData(data) {
     const response = await fetch(data)
@@ -107,10 +110,19 @@ async function getData(data) {
 
 
 // add random marker to map for testing purposes
-function showMarker() {
+async function showMarker(myObj) {
     
-    var lat = Math.floor(Math.random()*90) + 1;
-    var lon = Math.floor(Math.random()*180) + 1;
+    lat1 = myObj.lon
+    lon1 = myObj.lat
+
+
+    var lat = parseFloat(lat1)
+    var lon = parseFloat(lon1)
+    console.log(lat)
+    console.log(lon)
+
+    // var lat = Math.floor(Math.random()*90) + 1;
+    // var lon = Math.floor(Math.random()*180) + 1;
 
     var myLatLon = new google.maps.LatLng(lat, lon)
 
@@ -119,7 +131,7 @@ function showMarker() {
         center: myLatLon
     }   
 
-    var map = new google.maps.Map(document.getElementById("map"), mapOptions)
+    var map = await new google.maps.Map(document.getElementById("map"), mapOptions)
 
     var marker = new google.maps.Marker ({
         position: myLatLon,
@@ -127,11 +139,13 @@ function showMarker() {
     });
 
     marker.setMap(map)
+    map.setZoom(map.getZoom());
+    // google.maps.event.addDomListener(window, 'load', initialize);
 }
 
-function doall() {
+async function doall() {
     // uploadImage()
 
-    printEXIF()
-    showMarker()
+    myObj = await printEXIF()
+    showMarker(myObj)
 }
