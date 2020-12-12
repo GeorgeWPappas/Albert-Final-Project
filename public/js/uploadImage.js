@@ -93,7 +93,7 @@ async function printEXIF() {
     
     obj = await getData(data);
     
-    // document.getElementById("date").value = obj.date;
+    document.getElementById("date").value = obj.dateTime;
     document.getElementById("longitude").value = obj.lonRef + "  " + obj.lon;
     document.getElementById("latitude").value = obj.latRef + "  " + obj.lat;
     document.getElementById("altitude").value = obj.alt;
