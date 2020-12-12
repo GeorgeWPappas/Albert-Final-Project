@@ -88,12 +88,13 @@ function printEXIF() {
     
     const data = 'https://albert-final-project-function.azurewebsites.net/api/gps_extractor?path=albertfinalprojectfuncti.blob.core.windows.net/uploaded-images&imagename=' + 'Biking.jpg'
     
-    results = getData(data)
-    var obj = JSON.parse(results);
+    obj = getData(data)
+    // alert(obj)
+    // var obj = JSON.parse(results);
     
-    alert(document.getElementById("date").value = obj.date);
-    document.getElementById("latitude").value = obj.latRef + " " + obj.lat;
+    // document.getElementById("date").value = obj.date;
     document.getElementById("longitude").value = obj.lonRef + " " + obj.lon;
+    document.getElementById("latitude").value = obj.latRef + " " + obj.lat;
     document.getElementById("altitude").value = obj.alt;
 }
 
