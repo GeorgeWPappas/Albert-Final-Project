@@ -207,7 +207,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     else:
         imageName = req.params.get('imagename')
 
-    # URL Example: http://localhost:7071/api/gps_extractor?path=albertfinalprojectfuncti.blob.core.windows.net/uploaded-images&imagename=Biking.jpg
+    # URL Example: https://albert-final-project-function.azurewebsites.net/api/gps_extractor?path=albertprojectstorage.blob.core.windows.net/user-image&imagename=Biking.jpg
     url = "https://" + str(onlinePath) + "/" + str(imageName)   # Creates image path URL.
     try:
         response = requests.get(url)    # Gets content from image path URL.
