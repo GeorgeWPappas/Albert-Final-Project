@@ -89,8 +89,6 @@ async function printEXIF() {
     const data = 'https://albert-final-project-function.azurewebsites.net/api/gps_extractor?path=albertfinalprojectfuncti.blob.core.windows.net/uploaded-images&imagename=' + 'Biking.jpg'
     
     obj = await getData(data);
-
-
     
     // document.getElementById("date").value = obj.date;
     document.getElementById("longitude").value = obj.lonRef + "  " + obj.lon;
@@ -124,10 +122,10 @@ async function showMarker(myObj) {
     // var lat = Math.floor(Math.random()*90) + 1;
     // var lon = Math.floor(Math.random()*180) + 1;
 
-    var myLatLon = new google.maps.LatLng(lat, lon)
+    var myLatLon = await new google.maps.LatLng(lon, lat)
 
     var mapOptions = {
-        zoom: 4,
+        zoom: 16,
         center: myLatLon
     }   
 
