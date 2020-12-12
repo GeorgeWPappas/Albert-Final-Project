@@ -58,6 +58,27 @@
                 });
             });
         </script>
+
+        {{!-- Parses JSON file. --}}
+        {{!-- <script> --}}
+            {{!-- //function printEXIF() {
+                //alert("hi")
+                //var txt = 'https://albert-final-project-function.azurewebsites.net/api/gps_extractor?'
+                //var obj = JSON.parse(txt);
+
+                //alert(obj);
+
+                //document.getElementById("date").innerHTML = obj.date;
+                //document.getElementById("latitude").innerHTML = obj.latRef + " " + obj.lat;
+                //document.getElementById("longitude").innerHTML = obj.lonRef + " " + obj.lon;
+                //document.getElementById("altitude").innerHTML = obj.alt;
+            //}); --}}
+        {{!-- </script> --}}
+
+        {{!-- TODO: Not used anymore. consider deleting --}}
+        <script src="/js/uploadImage.js"></script>
+        <script src="azure-storage.file.js"></script>
+
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
         
@@ -83,94 +104,126 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger active" href="/">Home</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger bg-secondary" href="/falsifer">Falsifer</a></li>
+                        {{!-- <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger bg-secondary" href="/falsifer">Falsifer</a></li> --}}
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger bg-secondary" href="/about">About</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
 
+        {{!-- WORKING HEADER --}}
         <!-- Masthead-->
         <header class="masthead bg-primary text-white text-center">
-            <!-- Choose file explorer bar -->
-            <div class="container">
-                <div class="col-lg-8 col-sm-10 col-12 mx-auto"></div>
+            <form method="POST" action="https://albert-upload-image.azurewebsites.net/api/Upload-User-Image?code=y6cWO/8xzFfJqBXgg47QTMmm2iK/xJ37pV68xVhIaBxpvhDT9J536g==" enctype="multipart/form-data" target="_blank"> <!-- LOU HATES FORMS -->
+                <!-- Choose file explorer bar -->
+                <div class="container">
                     <div class="input-group">
                         <label class="input-group-btn">
                             <span class="btn bg-secondary text-primary rounded_left">
-                                Browse&hellip; <input type="file" style="display: none;" accept="image/png, image/jpeg">
+                                Browse&hellip; <input type="file" id="filename" name="filename" style="display: none;" accept="image/png, image/jpeg">
                             </span>
                         </label>
                         <input type="text" class="form-control" readonly>
                         <label class="input-group-btn">
-                            <span class="btn bg-secondary text-primary rounded_right">
-                                Submit <input type="submit" style="display: none;">
+                            <button class="btn bg-secondary text-primary rounded_right">
+                                Upload <input type="submit" style="display: none;"> 
+                            </button>
+                        </label>
+                        <label class="input-group-btn">
+                            <span class="btn bg-secondary text-primary rounded space" onclick="doall()"> 
+                                Execute 
                             </span>
                         </label>
                     </div>
                 </div>
-            </div>
+            </form>
         </header>
 
-            {{!-- <div class="container">
-                <div class="row mb-5 text-left text-white">
-                    <div class="col-lg-6 mx-auto">                                                               
-                        <div class="input-group">
-                            <div class="custom-file">  
-                                <input type="file" class="custom-file-label rounded-pill" id="fileInput" accept="image/png, image/jpeg">
-                                <label  for="fileInput">Choose file</label>   
-                            </div> 
-                        </div>
-                    </div>                                                             
-                </div> 
-            </div> --}}
-
-            {{!-- <div class="container">
-                <div class="row mb-5 text-left text-white">
-                    <div class="col-lg-6 mx-auto">                                                               
-                        <div class="input-group">
-                            <div class="custom-file">    
-                                <input type="file" class="custom-file-input rounded-pill" id="fileInput" aria-describedby="fileInput">
-                                <label class="custom-file-label rounded-pill" for="fileInput">Choose file</label>   
-                            </div>  
-                        </div>
-                    </div>                                                             
-                </div>      
-            </div> --}}
-            
-            {{!-- <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg"> --}}
-
-
-            {{!-- FORMATTED COL.
-            <div class="container-fluid text-center ">    
-                <div class="row content">
-                    <div class="col-sm-3">
-                        <h3 style="page-section-heading text-center">information</h3>
-                        <br>
-                        <p class="text-uppercase text-black">File Name: </p>
-                        <p class="text-uppercase text-black">Date: </p>
-                        <br>
-                        <p class="text-uppercase text-black">Longitude: </p>
-                        <p class="text-uppercase text-black">Latitude: </p>
-                        <br>
-                        <p class="text-uppercase text-black">Camera Make: </p>
-                        <p class="text-uppercase text-black">Model: </p>
-                    </div>
+        {{!-- <!-- Masthead TRYING TO MOVE FORM INTO SCRIPT -->
+        <header class="masthead bg-primary text-white text-center">
+                <!-- Choose file explorer bar -->
+                <div class="container">
+                    <div class="input-group">
                     
-                    <div class="col-sm-6 text-left"> 
-                        <div id="map"></div>
-                    </div>
-                    
-                    <div class="col-sm-2 sidenav">
-                        <div class="well">
-                            <p>ADS</p>
-                        </div>
-                        <div class="well">
-                            <p>ADS</p>
-                        </div>
+                        <label class="input-group-btn">
+                            <span class="btn bg-secondary text-primary rounded_left">
+                                Browse&hellip; <input type="file" id="filename" name="filename" style="display: none;" accept="image/png, image/jpeg">
+                            </span>
+                        </label>
+                        
+                        <input type="text" class="form-control" readonly>
+                        
+                        <label class="input-group-btn">
+                            <button class="btn bg-secondary text-primary rounded_right" onclick="doall()">
+                                Upload <input type="submit" style="display: none;">
+                            </button>
+                        </label>
                     </div>
                 </div>
-            </div> --}}
+        </header> --}}
+
+        {{!-- coordinates.update(latRef = str(latRef), lat = str(lat), lonRef = str(lonRef), lon = str(lon), alt = str(alt)) --}}
+
+        {{!-- FORMATTED COL. - FAILED
+        <div class="container">
+            <div class="row mb-5 text-left text-white">
+                <div class="col-lg-6 mx-auto">                                                               
+                    <div class="input-group">
+                        <div class="custom-file">  
+                            <input type="file" class="custom-file-label rounded-pill" id="fileInput" accept="image/png, image/jpeg">
+                            <label  for="fileInput">Choose file</label>   
+                        </div> 
+                    </div>
+                </div>                                                             
+            </div> 
+        </div> --}}
+
+        {{!-- <div class="container">
+            <div class="row mb-5 text-left text-white">
+                <div class="col-lg-6 mx-auto">                                                               
+                    <div class="input-group">
+                        <div class="custom-file">    
+                            <input type="file" class="custom-file-input rounded-pill" id="fileInput" aria-describedby="fileInput">
+                            <label class="custom-file-label rounded-pill" for="fileInput">Choose file</label>   
+                        </div>  
+                    </div>
+                </div>                                                             
+            </div>      
+        </div> --}}
+        
+        {{!-- <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg"> --}}
+
+
+        {{!-- FORMATTED COL. - FAILED
+        <div class="container-fluid text-center ">    
+            <div class="row content">
+                <div class="col-sm-3">
+                    <h3 style="page-section-heading text-center">information</h3>
+                    <br>
+                    <p class="text-uppercase text-black">File Name: </p>
+                    <p class="text-uppercase text-black">Date: </p>
+                    <br>
+                    <p class="text-uppercase text-black">Longitude: </p>
+                    <p class="text-uppercase text-black">Latitude: </p>
+                    <br>
+                    <p class="text-uppercase text-black">Camera Make: </p>
+                    <p class="text-uppercase text-black">Model: </p>
+                </div>
+                
+                <div class="col-sm-6 text-left"> 
+                    <div id="map"></div>
+                </div>
+                
+                <div class="col-sm-2 sidenav">
+                    <div class="well">
+                        <p>ADS</p>
+                    </div>
+                    <div class="well">
+                        <p>ADS</p>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
             
         <section class="bg-primary text-white text-center">
             {{!-- GREEN COL. --}}
@@ -178,33 +231,40 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-12 col-sm-12 col-12 col-xl-3 bg-primary">
                         <h3 style="page-section-heading text-center">information</h3>
-                        <br>
-                        <p class="text-uppercase text-black text-left">File Name: </p>
-                        <p class="text-uppercase text-black text-left">Date: </p>
-                        <br>
-                        <p class="text-uppercase text-black text-left">Longitude: </p>
-                        <p class="text-uppercase text-black text-left">Latitude: </p>
-                        <br>
-                        <p class="text-uppercase text-black text-left">Camera Make: </p>
-                        <p class="text-uppercase text-black text-left">Model: </p>
 
+                        {{!-- DECIDED AGAINST
+                        <p class="text-uppercase text-black ">File Name: </p>
+                        <input id="name" type="text" value=""  size="25" style="" disabled >
+                        <br> --}}
+
+                        <p class="text-uppercase text-black ">Date & TIME:  </p>
+                        <input id="date" type="text" value="" size="25" style="" disabled >
                         <br>
+
+                        <p class="text-uppercase text-black ">Latitude: </p>
+                        <input id="latitude" type="text" value="" size="25" style="" disabled >
+                        <br>
+
+                        <p class="text-uppercase text-black ">Longitude: </p>
+                        <input id="longitude" type="text" value="" size="25" style="" disabled >
+                        <br>
+
+                        <p class="text-uppercase text-black ">Altitude: </p>
+                        <input id="altitude" type="text" value="" size="25" style="" disabled >
+
+                        <br><br>
                     </div>
+                    
                     <div class="col-lg-9 col-md-12 col-sm-12 col-12 col-xl-9" style="height: 40rem; width: auto";>
                         <div id="map"></div>
-                        
                     </div>
-                    {{!-- Ad code
+                    {{!-- Ad code DECIDED AGAINST
                     <div class="col-lg-3 bg-primary">
                         <img class="" alt="" src="/img/lewis.gif" width="350rem" height="600rem" >
                     </div> --}}
                 </div>
             </div>
         </section>
-
-
-
-        {{!-- <div id="map"></div> --}}
 
         <!-- About Section-->
         <section class="page-section bg-white text-black mb-0" id="about">
@@ -275,9 +335,9 @@
         <!-- Third party plugin JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         
-        <!-- Contact form JS-->
-        <script src="assets/mail/jqBootstrapValidation.js"></script>
-        <script src="assets/mail/contact_me.js"></script>
+        <!-- Contact form JS NOT USED-->
+        {{!-- <script src="assets/mail/jqBootstrapValidation.js"></script>
+        <script src="assets/mail/contact_me.js"></script> --}}
         
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
