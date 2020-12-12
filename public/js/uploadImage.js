@@ -122,14 +122,37 @@ async function getFileName() {
 }
 
 async function showMarker(myObj) {
-    
-    lat1 = myObj.lat
-    lon1 = myObj.lon
+    // Gets coordinates from object.
+    latStr = myObj.lat
+    lonStr = myObj.lon
+    latRef = myObj.latRef
+    lonRef = myObj.lonRef
 
+    // Converts from string to float.
+    var lat = parseFloat(latStr)
+    var lon = parseFloat(lonStr)
 
-    var lat = parseFloat(lat1)
-    var lon = parseFloat(lon1)
+    // Corrects coordinate sign for latitude.
+    if (latRef == "N") {
+        if (lat < 0) {
+            lat = lat * -1
+        }
+    } else {
+        if (lat > 0) {
+            lat = lat * -1
+        }
+    }
 
+    // Corrects coordinate sign for longitude.
+    if (lonRef == "E") {
+        if (lon < 0) {
+            lon = lon * -1
+        }
+    } else {
+        if (lon > 0) {
+            lon = lon * -1
+        }
+    }
 
     // add random marker to map for testing purposes
     // var lat = Math.floor(Math.random()*90) + 1;
