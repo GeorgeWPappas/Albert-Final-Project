@@ -170,6 +170,6 @@ async function showMarker(myObj) {
 async function doall() {
     // uploadImage()
 
-    myObj = await printEXIF()
-    showMarker(myObj)
+    imageData = await printEXIF()   // Gets coordinates from azure function.
+    showMarker(imageData)   // Displays marker on map.
 }
