@@ -137,27 +137,33 @@ async function showMarker(myObj) {
     // var lon = Math.floor(Math.random()*180) + 1;
 
     if (lat1 == 'No LAT Data') {
-        lat = 41.605540
-        lon = -88.077220
         alert('MAP RESET: no latitude and longitude to map.')
+
+        var myLatLon = await new google.maps.LatLng(41.605540, -88.077220)
+
+        var mapOptions = {
+            zoom: 8,
+            center: myLatLon
+        }   
+
+        var map = await new google.maps.Map(document.getElementById("map"), mapOptions)
+    } else {
+        var myLatLon = await new google.maps.LatLng(lat, lon)
+
+        var mapOptions = {
+            zoom: 16,
+            center: myLatLon
+        }   
+
+        var map = await new google.maps.Map(document.getElementById("map"), mapOptions)
+
+        var marker = new google.maps.Marker ({
+            position: myLatLon,
+            title: "Image Location"
+        });
+
+        marker.setMap(map)
     }
-
-    var myLatLon = await new google.maps.LatLng(lat, lon)
-
-
-    var mapOptions = {
-        zoom: 16,
-        center: myLatLon
-    }   
-
-    var map = await new google.maps.Map(document.getElementById("map"), mapOptions)
-
-    var marker = new google.maps.Marker ({
-        position: myLatLon,
-        title: "Image Location"
-    });
-
-    marker.setMap(map)
     //map.setZoom(map.getZoom());
     // google.maps.event.addDomListener(window, 'load', initialize);
 }
