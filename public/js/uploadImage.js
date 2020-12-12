@@ -86,23 +86,23 @@ function printEXIF() {
     // alert(filename.value)
     
     
-    // const data = 'https://albert-final-project-function.azurewebsites.net/api/gps_extractor?path=albertfinalprojectfuncti.blob.core.windows.net/uploaded-images&imagename=' + 'Biking.jpg'
+    const data = 'https://albert-final-project-function.azurewebsites.net/api/gps_extractor?path=albertfinalprojectfuncti.blob.core.windows.net/uploaded-images&imagename=' + 'Biking.jpg'
     
-    // results = getData(data)
-    // alert(results)
-    // var obj = JSON.parse(results);
+    results = getData(data)
+    var obj = JSON.parse(results);
     
-    // document.getElementById("date").innerHTML = obj.date;
-    // document.getElementById("latitude").innerHTML = obj.latRef + " " + obj.lat;
-    // document.getElementById("longitude").innerHTML = obj.lonRef + " " + obj.lon;
-    // document.getElementById("altitude").innerHTML = obj.alt;
+    document.getElementById("date").innerHTML = obj.date;
+    document.getElementById("latitude").innerHTML = obj.latRef + " " + obj.lat;
+    document.getElementById("longitude").innerHTML = obj.lonRef + " " + obj.lon;
+    document.getElementById("altitude").innerHTML = obj.alt;
 }
 
-// async function getData(data) {
-//     const response = await fetch(data)
-//     const results = await response.json()
-//     return results
-// }
+async function getData(data) {
+    const response = await fetch(data)
+    const results = await response.json()
+    
+    return results
+}
 
 
 // add random marker to map for testing purposes
