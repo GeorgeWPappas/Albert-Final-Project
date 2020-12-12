@@ -124,8 +124,8 @@ async function getFileName() {
 // add random marker to map for testing purposes
 async function showMarker(myObj) {
     
-    lat1 = myObj.lon
-    lon1 = myObj.lat
+    lat1 = myObj.lat
+    lon1 = myObj.lon
 
 
     var lat = parseFloat(lat1)
@@ -136,7 +136,14 @@ async function showMarker(myObj) {
     // var lat = Math.floor(Math.random()*90) + 1;
     // var lon = Math.floor(Math.random()*180) + 1;
 
-    var myLatLon = await new google.maps.LatLng(lon, lat)
+    if (lat1 == 'No LAT Data') {
+        lat = 41.605540
+        lon = -88.077220
+        alert('MAP RESET: no latitude and longitude to map.')
+    }
+
+    var myLatLon = await new google.maps.LatLng(lat, lon)
+
 
     var mapOptions = {
         zoom: 16,
@@ -151,7 +158,7 @@ async function showMarker(myObj) {
     });
 
     marker.setMap(map)
-    map.setZoom(map.getZoom());
+    //map.setZoom(map.getZoom());
     // google.maps.event.addDomListener(window, 'load', initialize);
 }
 
