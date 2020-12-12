@@ -67,10 +67,8 @@ def ExtractLatLon(gps):
         longitude = gps["GPSLongitude"]
         longitudeRef = gps["GPSLongitudeRef"]
 
-        # lat = ConvertToDegrees(latitude)
-        # lon = ConvertToDegrees(longitude)
-        lat = latitude
-        lon = longitude
+        lat = ConvertToDegrees(latitude)
+        lon = ConvertToDegrees(longitude)
 
         # Check Latitude Reference
         # If South of the Equator then lat value is negative
