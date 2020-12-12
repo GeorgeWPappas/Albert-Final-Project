@@ -121,7 +121,6 @@ async function getFileName() {
     return filename
 }
 
-// add random marker to map for testing purposes
 async function showMarker(myObj) {
     
     lat1 = myObj.lat
@@ -132,6 +131,7 @@ async function showMarker(myObj) {
     var lon = parseFloat(lon1)
 
 
+    // add random marker to map for testing purposes
     // var lat = Math.floor(Math.random()*90) + 1;
     // var lon = Math.floor(Math.random()*180) + 1;
 
