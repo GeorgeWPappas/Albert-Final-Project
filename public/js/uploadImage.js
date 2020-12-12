@@ -91,10 +91,10 @@ function printEXIF() {
     results = getData(data)
     var obj = JSON.parse(results);
     
-    document.getElementById("date").innerHTML = obj.date;
-    document.getElementById("latitude").innerHTML = obj.latRef + " " + obj.lat;
-    document.getElementById("longitude").innerHTML = obj.lonRef + " " + obj.lon;
-    document.getElementById("altitude").innerHTML = obj.alt;
+    document.getElementById("date").value = obj.date;
+    document.getElementById("latitude").value = obj.latRef + " " + obj.lat;
+    document.getElementById("longitude").value = obj.lonRef + " " + obj.lon;
+    document.getElementById("altitude").value = obj.alt;
 }
 
 async function getData(data) {
