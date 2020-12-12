@@ -52,7 +52,8 @@ def ExtractGPSDictionary(fileName):
                     gpsTag = GPSTAGS.get(curTag, curTag)
                     gpsDictionary[gpsTag] = theValue[curTag]    # Add the text name and value to our dictionary.
 
-                basicExifData = [imageTimeStamp, cameraMake, cameraModel]
+                # basicExifData = [imageTimeStamp, cameraMake, cameraModel] # Commented out because we're not using cameraMake or cameraModel.
+                basicExifData = imageTimeStamp  # Saves image date and time.
                 return gpsDictionary, basicExifData
     else:
         return None, None
@@ -131,10 +132,15 @@ def getGPSCoordinates(targetFile, imageName, coordinates):
         gpsDictionary = None
         exifList = None
 
+    if (exifList):
+        coordinates.update(dateTime = str(exifList))  # Updates coordinate dictionary.
+    else:
+        coordinates.update(dateTime = 'No Date/Time Data') # Updates coordinate dictionary.
+
     if (gpsDictionary):
-        # Obtain the Lat Lon values from the gpsDictionary
-        # Converted to degrees
-        # The return value is a dictionary key value pairs
+        # Obtains the Lat Lon values from the gpsDictionary.
+        # Converted to degrees.
+        # The return value is a dictionary key value pairs.
         dCoor = ExtractLatLon(gpsDictionary)
 
         lat = dCoor.get("Lat")
