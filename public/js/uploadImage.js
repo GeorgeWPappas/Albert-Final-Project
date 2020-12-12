@@ -135,8 +135,9 @@ async function showMarker(myObj) {
     // var lat = Math.floor(Math.random()*90) + 1;
     // var lon = Math.floor(Math.random()*180) + 1;
 
-    if (lat1 == 'No LAT Data') {
-        alert('MAP RESET: no latitude and longitude to map.')
+    // Adds coordinates to map and places pin if data exists.
+    if (latStr == 'No LAT Data') {
+        // alert('MAP RESET: no latitude and longitude to map.')    // TODO: might be too much. should just display information.
 
         var myLatLon = await new google.maps.LatLng(41.605540, -88.077220)
 
