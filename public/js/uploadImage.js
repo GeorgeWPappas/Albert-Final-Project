@@ -130,8 +130,7 @@ async function showMarker(myObj) {
 
     var lat = parseFloat(lat1)
     var lon = parseFloat(lon1)
-    // console.log(lat)
-    // console.log(lon)
+
 
     // var lat = Math.floor(Math.random()*90) + 1;
     // var lon = Math.floor(Math.random()*180) + 1;
