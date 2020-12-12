@@ -170,7 +170,7 @@ def getGPSCoordinates(targetFile, imageName, coordinates):
                 logging.info('     '+'Longitude:  '+str(lonRef)+'  '+str(lon))
                 logging.info('     '+'Altitude:      '+'No ALT Data')
         else:
-            coordinates.update(latRef = '-', lat = 'No LAT Data', lonRef = '-', lon = 'No LON Data', alt = 'No ALT Data')   # Updates coordinate dictionary.
+            coordinates.update(latRef = ' ', lat = 'No LAT Data', lonRef = ' ', lon = 'No LON Data', alt = 'No ALT Data')   # Updates coordinate dictionary.
 
             # Logs image data.
             logging.info(imageName+':')
@@ -178,7 +178,7 @@ def getGPSCoordinates(targetFile, imageName, coordinates):
             logging.info('     '+'Longitude: '+'No LON Data')
             logging.info('     '+'Altitude:  '+'No ALT Data')
     else:
-        coordinates.update(latRef = '-', lat = 'No LAT Data', lonRef = '-', lon = 'No LON Data', alt = 'No ALT Data')   # Updates coordinate dictionary.
+        coordinates.update(latRef = ' ', lat = 'No LAT Data', lonRef = ' ', lon = 'No LON Data', alt = 'No ALT Data')   # Updates coordinate dictionary.
         
         # Logs image data.
         logging.info(imageName+':')
