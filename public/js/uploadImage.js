@@ -84,9 +84,12 @@ async function printEXIF() {
     // document.forms[filename].enctype="multipart/form-data";
     // document.forms[filename].submit();
     // alert(filename.value)
+
+    // input = document.getElementById('filename').value;
+    file = await getFileName()
+
     
-    
-    const data = 'https://albert-final-project-function.azurewebsites.net/api/gps_extractor?path=albertfinalprojectfuncti.blob.core.windows.net/uploaded-images&imagename=' + 'Biking.jpg'
+    const data = 'https://albert-final-project-function.azurewebsites.net/api/gps_extractor?path=albertprojectstorage.blob.core.windows.net/user-image&imagename=' + file
     
     obj = await getData(data);
     
@@ -95,7 +98,7 @@ async function printEXIF() {
     document.getElementById("latitude").value = obj.latRef + "  " + obj.lat;
     document.getElementById("altitude").value = obj.alt;
 
-    return obj
+    return obj;
 }
 
 
@@ -106,38 +109,61 @@ async function getData(data) {
     return results
 }
 
+async function getFileName() {
+    var fullPath = document.getElementById('filename').value;
+    if (fullPath) {
+        var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+        var filename = fullPath.substring(startIndex);
+    if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+        filename = filename.substring(1);
+        }
+    }
+    return filename
+}
 
 // add random marker to map for testing purposes
 async function showMarker(myObj) {
     
-    lat1 = myObj.lon
-    lon1 = myObj.lat
+    lat1 = myObj.lat
+    lon1 = myObj.lon
 
 
     var lat = parseFloat(lat1)
     var lon = parseFloat(lon1)
-    console.log(lat)
-    console.log(lon)
+
 
     // var lat = Math.floor(Math.random()*90) + 1;
     // var lon = Math.floor(Math.random()*180) + 1;
 
-    var myLatLon = await new google.maps.LatLng(lon, lat)
+    if (lat1 == 'No LAT Data') {
+        alert('MAP RESET: no latitude and longitude to map.')
 
-    var mapOptions = {
-        zoom: 16,
-        center: myLatLon
-    }   
+        var myLatLon = await new google.maps.LatLng(41.605540, -88.077220)
 
-    var map = await new google.maps.Map(document.getElementById("map"), mapOptions)
+        var mapOptions = {
+            zoom: 8,
+            center: myLatLon
+        }
 
-    var marker = new google.maps.Marker ({
-        position: myLatLon,
-        title: "Image Location"
-    });
+        var map = await new google.maps.Map(document.getElementById("map"), mapOptions)
+    } else {
+        var myLatLon = await new google.maps.LatLng(lat, lon)
 
-    marker.setMap(map)
-    map.setZoom(map.getZoom());
+        var mapOptions = {
+            zoom: 16,
+            center: myLatLon
+        }   
+
+        var map = await new google.maps.Map(document.getElementById("map"), mapOptions)
+
+        var marker = new google.maps.Marker ({
+            position: myLatLon,
+            title: "Image Location"
+        });
+
+        marker.setMap(map)
+    }
+    //map.setZoom(map.getZoom());
     // google.maps.event.addDomListener(window, 'load', initialize);
 }
 
