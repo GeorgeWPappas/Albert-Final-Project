@@ -144,7 +144,7 @@ async function showMarker(myObj) {
         var mapOptions = {
             zoom: 8,
             center: myLatLon
-        }   
+        }
 
         var map = await new google.maps.Map(document.getElementById("map"), mapOptions)
     } else {
