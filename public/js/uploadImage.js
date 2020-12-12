@@ -84,9 +84,12 @@ async function printEXIF() {
     // document.forms[filename].enctype="multipart/form-data";
     // document.forms[filename].submit();
     // alert(filename.value)
+
+    // input = document.getElementById('filename').value;
+    file = await getFileName()
+
     
-    
-    const data = 'https://albert-final-project-function.azurewebsites.net/api/gps_extractor?path=albertfinalprojectfuncti.blob.core.windows.net/uploaded-images&imagename=' + 'Biking.jpg'
+    const data = 'https://albert-final-project-function.azurewebsites.net/api/gps_extractor?path=albertprojectstorage.blob.core.windows.net/user-image&imagename=' + file
     
     obj = await getData(data);
     
@@ -95,7 +98,7 @@ async function printEXIF() {
     document.getElementById("latitude").value = obj.latRef + "  " + obj.lat;
     document.getElementById("altitude").value = obj.alt;
 
-    return obj
+    return obj;
 }
 
 
@@ -106,6 +109,17 @@ async function getData(data) {
     return results
 }
 
+async function getFileName() {
+    var fullPath = document.getElementById('filename').value;
+    if (fullPath) {
+        var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+        var filename = fullPath.substring(startIndex);
+    if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+        filename = filename.substring(1);
+        }
+    }
+    return filename
+}
 
 // add random marker to map for testing purposes
 async function showMarker(myObj) {
@@ -116,8 +130,8 @@ async function showMarker(myObj) {
 
     var lat = parseFloat(lat1)
     var lon = parseFloat(lon1)
-    console.log(lat)
-    console.log(lon)
+    // console.log(lat)
+    // console.log(lon)
 
     // var lat = Math.floor(Math.random()*90) + 1;
     // var lon = Math.floor(Math.random()*180) + 1;
