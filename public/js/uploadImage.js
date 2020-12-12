@@ -88,11 +88,11 @@ async function printEXIF() {
     // input = document.getElementById('filename').value;
     file = await getFileName()
 
-    
     const data = 'https://albert-final-project-function.azurewebsites.net/api/gps_extractor?path=albertprojectstorage.blob.core.windows.net/user-image&imagename=' + file
     
     obj = await getData(data);
     
+    // Displays information.
     document.getElementById("date").value = obj.dateTime;
     document.getElementById("latitude").value = obj.lat + "  " + obj.latRef;
     document.getElementById("longitude").value = obj.lon + "  " + obj.lonRef;
@@ -105,7 +105,7 @@ async function printEXIF() {
 async function getData(data) {
     const response = await fetch(data)
     const results = await response.json()
-    
+
     return results
 }
 
@@ -118,6 +118,7 @@ async function getFileName() {
         filename = filename.substring(1);
         }
     }
+
     return filename
 }
 
