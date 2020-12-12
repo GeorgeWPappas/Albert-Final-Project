@@ -30,7 +30,7 @@ def ExtractGPSDictionary(fileName):
     if exifData:
         # Iterate through the values in the exif dictionary.
         for tag, theValue in exifData.items():
-            tagValue = TAGS.get(tag, tag)   # obtain the tag
+            tagValue = TAGS.get(tag, tag)   # Obtain the tag.
 
             # Collect basic image data if available
             if tagValue == 'DateTimeOriginal':
@@ -44,11 +44,10 @@ def ExtractGPSDictionary(fileName):
             
             # check the tag for GPS
             if tagValue == "GPSInfo":
-                # Found it !
-                # Now create a Dictionary to hold the GPS Data
+                # Creates a Dictionary to hold GPS Data.
                 gpsDictionary = {}
 
-                # Loop through the GPS Information
+                # Loops through the GPS Information.
                 for curTag in theValue:
                     gpsTag = GPSTAGS.get(curTag, curTag)
                     gpsDictionary[gpsTag] = theValue[curTag]    # Add the text name and value to our dictionary.
