@@ -3,8 +3,8 @@ const expressHandlebars = require('express-handlebars')
 const app = express()
 const port = process.env.PORT || 3000
 
-// var favicon = require('serve-favicon');
-// app.use(favicon(__dirname + '/public/img/favicon.ico'));
+var favicon = require('serve-favicon');
+app.use(favicon(__dirname + '/public/img/favicon.ico'));
 
 // configure Handlebars view engine
 app.engine('handlebars', expressHandlebars({
